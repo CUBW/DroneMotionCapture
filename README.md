@@ -29,6 +29,12 @@ Next step is to input this information into Ecalc ...
 
 Note we are using "Including Drive" as our weight option. This is because we have chosen all parts and know the actual weight. The other options beside "include drive" will asume your total weight doesn't include particular components and try to add those weights for you. In this case we can ignore the warning related to total weight, because the estimated weight that ecalc thinks this build should weigh is less than our actual parts. But since we went to the trouble of finding the actual total weight of our drone, we can ignore this. 
 
+Take aways:
+
+In order for our drone to be safely fly, Load, Current, Est. Temp, and Thrust-weight all have to be in the green. If these metrics are in yellow and red, drone my not be able to fly, or prone to damage itself. 
+
+Flight time and Specific Thrust can be in Yellow or Red. Since we are going for an indoor drone with reasonably long flight time, our specific thrust is in the yellow. This is okay because specific thrust relates how effienctly our drone is turning wattage into thrust, and does not relate ablitly to drone to fly or possibly overheat. 
+
 ## 2. Physical Assembly
 ### Flight Controller
 #### Raspberry Pi
