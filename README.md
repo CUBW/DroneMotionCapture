@@ -39,6 +39,7 @@ With this ecalc calculation we can confirm our drone will operate correctly with
 
 ## 2. Physical Assembly
 ### Flight Controller
+
 #### Raspberry Pi
 #### Electronic Speed Controller (ESC)
 #### First-Person View (FPV) Camera
