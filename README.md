@@ -21,6 +21,11 @@ To begin we will make an Excel file with all of proposed parts, with summed weig
 
 ![My Image](documentation_images/Final_robotics_drone_excel.png)
 
+Note the totaled weights and power draw. Power draw does NOT include motors. 
+
+Next step is to input this information into Ecalc ... 
+
+![My Image](documentation_images/ecalc_performance_stats_robotics_drone.png)
 
 ## 2. Physical Assembly
 ### Flight Controller
