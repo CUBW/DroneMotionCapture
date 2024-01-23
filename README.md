@@ -14,7 +14,12 @@
    - [FC Config](#fc-config)
 
 ## 1. Basic Build and eCalc Statistics
-<!-- Content goes here -->
+To confirm the performance of our proposed custom drone build, we use Ecalc Software. Ecalc takes in information about your custom drone, and predicts metrics such as Thrust:Weight and flight time
+
+Basic Drone parts include, Frame, ESC, Motors, Props, and Batteries. Ecalc will also take into account the power draw of any drone components like Flight controller, FPV camera, and antenna. 
+To begin we will make an Excel file with all of proposed parts, with summed weights, and power draws (not including motors)...
+
+
 
 ## 2. Physical Assembly
 ### Flight Controller
