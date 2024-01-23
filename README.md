@@ -1,41 +1,35 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
+# Table of Contents
 
-\begin{document}
+1. **Basic Build and eCalc Statistics**
 
-\tableofcontents
+2. **Physical Assembly**
+   - Flight Controller
+     - Raspberry Pi
+     - Electronic Speed Controller (ESC)
+     - First-Person View (FPV) Camera
+   - Electronic Speed Controller (ESC)
+     - Battery Connector
+     - Motors
+   - Raspberry Pi
+     - Button
 
-\section{Basic Build + Ecalc Stats}
+3. **Firmware**
+   - Flight Controller - ArduPilot/Kakute H7
+     - STM32Cube Programmer and ArduCopter ISO
+     - Mission Planner
+   - Electronic Speed Controller (ESC)
+     - BLHeli Suite
+   - Raspberry Pi
+     - Raspbian Image Flasher
+     - MAVProxy
 
-\section{Physical Assembly}
-    \subsection{Flight Controller}
-        \subsubsection{Raspberry Pi}
-        \subsubsection{ESC}
-        \subsubsection{FPV Camera}
-    \subsection{ESC}
-        \subsubsection{Battery Connector}
-        \subsubsection{Motors}
-    \subsection{Raspberry Pi}
-        \subsubsection{Button}
+4. **Initial Setup**
+   - Raspberry Pi Antenna Setup
+     - Flight Controller Settings
+     - Raspberry Pi Settings
+     - MAVProxy Relay
+   - Flight Controller Configuration
+     - Motor, Frame, Propeller, and Battery
+     - Failsafes and Warnings
+     - Calibration
 
-\section{Firmware}
-    \subsection{Flight Controller - Ardupilot/Kakute H7}
-        \subsubsection{STM32CubeProgrammer + Arducopter.iso}
-        \subsubsection{Mission Planner}
-    \subsection{ESC}
-        \subsubsection{BLHeliSuite}
-    \subsection{Raspberry Pi}
-        \subsubsection{Raspbian Image Flasher}
-        \subsubsection{MAVProxy}
-
-\section{Initial Setup}
-    \subsection{Raspberry Pi Antenna Setup}
-        \subsubsection{FC Settings}
-        \subsubsection{Pi Settings}
-        \subsubsection{MAVProxy Relay}
-    \subsection{FC Config}
-        \subsubsection{Motor + Frame + Prop + Battery}
-        \subsubsection{Failsafes + Warnings}
-        \subsubsection{Calibration}
-
-\end{document}
