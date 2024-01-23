@@ -35,6 +35,8 @@ In order for our drone to be safely fly, Load, Current, Est. Temp, and Thrust-we
 
 Flight time and Specific Thrust can be in Yellow or Red. Since we are going for an indoor drone with reasonably long flight time, our specific thrust is in the yellow. This is okay because specific thrust relates how effienctly our drone is turning wattage into thrust, and does not relate ablitly to drone to fly or possibly overheat. 
 
+With this ecalc calculation we can confirm our drone will operate correctly with this combination of parts. 
+
 ## 2. Physical Assembly
 ### Flight Controller
 #### Raspberry Pi
