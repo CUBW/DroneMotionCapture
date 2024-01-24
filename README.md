@@ -46,7 +46,8 @@ For our flight controller we are using  Kakute h7 mini 1.3s. Compatible with Ard
 
 #### Raspberry Pi
 For our initial setup, we are using Pi only as antenna, so we much make four connections, 5v, Ground, Tx (transmit pin), and Rx (recieve pin). 
-![My Image](documentation_images/fc_and_pi.jpg)
+<img src="documentation_images/fc_and_pi.jpg" alt="Image Description" style="transform: rotate(90deg);">
+
 
 #### Electronic Speed Controller (ESC)
 #### First-Person View (FPV) Camera
