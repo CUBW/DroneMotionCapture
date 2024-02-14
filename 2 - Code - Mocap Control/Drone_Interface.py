@@ -3,8 +3,7 @@
 import sys
 import time
 from NatNetClient import NatNetClient
-import DataDescriptions
-import MoCapData
+
 
 # Packages for drone
 from pymavlink import mavutil
@@ -23,16 +22,26 @@ def drone_connect(port):
     return connection 
 
 def takeoff(connection, takeoff_alt):
+    set_gps_global_origin(connection)
     #set copter to altitude hold mode
+    # 0 = stabilize
+    # 1 = acro
+    # 2 = alt_hold
+    # 3 = auto
+    # 4 = guided
+    # 5 = loiter
+    # 6 = rtl
+    # 7 = circle
     connection.mav.set_mode_send(connection.target_system, mavutil.mavlink.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, 2) 
 
     #arm throttle
     connection.mav.command_long_send(connection.target_system, connection.target_component, 
+    
                                  mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM, 0, 1, 0, 0, 0, 0, 0, 0)
 
     msg = connection.recv_match(type = 'COMMAND_ACK', blocking = True)
     print(msg) #"result: 0" if it executed without error. If you get result: 4, you probably need to set the copter to guided mode.
-
+    time.sleep(5) #Added delay to allow time for drone to arm before takeoff command
     #send takeoff command to target altitude.
     connection.mav.command_long_send(connection.target_system, connection.target_component, 
                                  mavutil.mavlink.MAV_CMD_NAV_TAKEOFF, 0, 0, 0, 0, 0, 0, 0, takeoff_alt)
@@ -44,11 +53,20 @@ def takeoff(connection, takeoff_alt):
     while 1:
         # Wait for the next LOCAL_POSITION_NED message
         msg = connection.recv_match(type='LOCAL_POSITION_NED', blocking=True)
-    
+        print(msg)
         # Check if altitude is within a threshold of the target altitude
-        if abs(msg.z * -1 - takeoff_alt) < 1.0:
-            print("Reached target altitude")
+        if msg.z*-1. > takeoff_alt: #z is negative because of drone's NED coordinate frame, making it positive here for readability
+            print('Current height: ' + str(msg.z*-1.)) #
+            print('Takeoff Success') 
             break
+def land(connection): 
+    connection.mav.command_long_send(connection.target_system, connection.target_component, 
+                                mavutil.mavlink.MAV_CMD_NAV_LAND, 0, 0, 0, 0, 0, 0, 0, 0)
+    
+def set_gps_global_origin(connection):
+    connection.mav.command_long_send(connection.target_system, connection.target_component, 
+                                48, 6, 6, 6, 0, 0, 0, 0, 0)
+
 
 def mocap_connect():
     # Mocap Initilization
@@ -121,34 +139,53 @@ def print_configuration(natnet_client):
 
 ###### MAIN ######
 # Drone Proof of Concept
-drone_connection = drone_connect(14550) #udp connection to ardupilot
 
-drone_connection.mav.command_long_send(drone_connection.target_system, drone_connection.target_component, 
-mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM, 0, 0, 21196, 0, 0, 0, 0, 0)
-msg = drone_connection.recv_match(type = 'COMMAND_ACK', blocking = True)
-print(msg) #"result: 0" if it executed without error. If you get result: 4, you probably need to set the copter to guided mode.
+# drone_connection.mav.command_long_send(drone_connection.target_system, drone_connection.target_component, 
+# mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM, 0, 0, 21196, 0, 0, 0, 0, 0)
+# msg = drone_connection.recv_match(type = 'COMMAND_ACK', blocking = True)
+# print(msg) #"result: 0" if it executed without error. If you get result: 4, you probably need to set the copter to guided mode.
 
 streaming_client = mocap_connect()
 
 is_running = streaming_client.run()
 
-msg_interval = 0.075
-last_msg_time = time.time()
+msg_interval = 0.075 # seconds
+last_msg_time = time.time() # seconds
 
-print(streaming_client.rigid_body_dict[1])
+temp = 0
 [drone_pos, drone_rot] = streaming_client.rigid_body_dict[1]
+init_height = drone_pos[1]
 
+drone_connection = drone_connect(14550) #udp connection to ardupilot
+
+while temp < 100:
+    current_time = time.time()
+    if (current_time - last_msg_time) > msg_interval:
+        temp += 1 
+        print(streaming_client.rigid_body_dict[1])
+        [drone_pos, drone_rot] = streaming_client.rigid_body_dict[1]
+        
+        time_us = int(current_time * 1.0e6) # Mavproxy wants micro seconds
+        drone_connection.mav.att_pos_mocap_send(time_us, (drone_rot[3], drone_rot[0], drone_rot[2], -drone_rot[1]), drone_pos[0], drone_pos[2], -drone_pos[1]+init_height)
+        
+        last_msg_time = current_time
+
+[drone_pos, drone_rot] = streaming_client.rigid_body_dict[1]
+drone_connection.mav.att_pos_mocap_send(0, (drone_rot[3], drone_rot[0], drone_rot[2], -drone_rot[1]), drone_pos[0], drone_pos[2], -drone_pos[1]+init_height)
 # Startup the drone
+
 takeoff(drone_connection, 1)
+#land(drone_connect)
+
 
 while is_running:
     current_time = time.time()
     
     if (current_time - last_msg_time) > msg_interval:
-        print(streaming_client.rigid_body_dict[1])
+        #print(streaming_client.rigid_body_dict[1])
         [drone_pos, drone_rot] = streaming_client.rigid_body_dict[1]
         
-        time_us = int(current_time * 1.0e6)
+        time_us = int(current_time * 1.0e6) # Mavproxy wants micro seconds
         drone_connection.mav.att_pos_mocap_send(time_us, (drone_rot[3], drone_rot[0], drone_rot[2], -drone_rot[1]), drone_pos[0], drone_pos[2], -drone_pos[1])
         
         last_msg_time = current_time
