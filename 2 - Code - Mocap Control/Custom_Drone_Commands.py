@@ -12,9 +12,10 @@
 # Packages for drone
 from pymavlink import mavutil
 import time # Used to sleep while the drone ramps up
+import threading #Used to create process to constantly send mocap data
 
 ###-------------------------------------------------------------------------------------###
-##                                Connect to Drone                                      ###
+###                               Connect to Drone                                      ###
 ###-------------------------------------------------------------------------------------###
 def drone_connect(port):
     """ Connect to the drone:
@@ -39,7 +40,7 @@ def drone_connect(port):
 
 
 ###-------------------------------------------------------------------------------------###
-##                                   Take Off                                           ###
+###                                  Take Off                                           ###
 ###-------------------------------------------------------------------------------------###
 def takeoff(drone, mocap_connection, init_time, takeoff_alt):
     """ Takeoff
@@ -53,10 +54,10 @@ def takeoff(drone, mocap_connection, init_time, takeoff_alt):
     # The drone's coordinate frame is NED, meaning the ground is zero and the higher you go 
     # the more negative a position you have. For readability use takeoff_alt is positive,
     # but for drone commands it needs to be negative:
-    takeoff_alt *= -1
+    #takeoff_alt *= -1
 
     # Initialize the GPS origin
-    set_gps_global_origin(drone)
+    #set_gps_global_origin(drone)
 
     # Here is the list of modes:
     # 0 = stabilize
@@ -68,13 +69,14 @@ def takeoff(drone, mocap_connection, init_time, takeoff_alt):
     # 6 = rtl
     # 7 = circle
     # Tell the drone to enter one of these modes:
-    flight_mode = 2
+    flight_mode = 4
     drone.mav.set_mode_send(drone.target_system, mavutil.mavlink.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, flight_mode) 
 
     # arm throttle:
     # reminder - the first 0 isn't a parameter, it is the configuration
     # first parameter: 0 = disarm, 1 = arm
     # second parameter: 0 = use safety checks, 21196 = force arm/disarm
+    print("Arming Throttle:")
     drone.mav.command_long_send(drone.target_system, drone.target_component, 
                                  mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM, 0, 1, 0, 0, 0, 0, 0, 0)
 
@@ -91,60 +93,80 @@ def takeoff(drone, mocap_connection, init_time, takeoff_alt):
     # 4: Yaw (degrees). If magnetometer isn't present this is ignored
     # 5th and 6th: Lat Long
     # 7th: Desired altitude (meters), should be negative because we're in NED coordinate frame
+    
+    ##### Trying the Attitude/Thrust method:
+    # print("Setting throttle to 0.9:")
+
+    # print(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))
+    # time_us = int((time.time()-init_time) * 1.0e6)
+    # drone.mav.set_attitude_target_send(time_us, drone.target_system, drone.target_component, 0b00000111, [1,0,0,0], 0, 0, 0, 0.9, [0,0,0])
+    
+    # receive_mav_message(drone)
+
+    # time.sleep(5)
+    
+    # print("Setting throttle to 0.5:")
+    # print(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))
+    # time_us = int((time.time()-init_time) * 1.0e6)
+    # drone.mav.set_attitude_target_send(time_us, drone.target_system, drone.target_component, 0, [1,0,0,0], 0, 0, 0, .5, [0,0,0])
+
+
+    print("Attempting Takeoff:")
+    print(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))
     drone.mav.command_long_send(drone.target_system, drone.target_component, 
-                                 mavutil.mavlink.MAV_CMD_NAV_TAKEOFF, 0, 0, 0, 0, 0, 0, 0, takeoff_alt)
-
-    msg = drone.recv_match(type = 'COMMAND_ACK', blocking = True)
-    print(msg)
-
+                                mavutil.mavlink.MAV_CMD_NAV_TAKEOFF, 0, 0, 0, 0, 0, 0, 0, takeoff_alt)
+    receive_mav_message(drone)
+    print("Finished takeoff script")
+    time.sleep(.5)
+    flight_mode = 2
+    drone.mav.set_mode_send(drone.target_system, mavutil.mavlink.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, flight_mode) 
     # Delay until we reach the desired altitude
     # We must update the via mocap repeatedly
-    msg_interval = 0.075 # seconds
-    last_msg_time = time.time()
+    #msg_interval = 0.075 # seconds
+   # last_msg_time = time.time()
 
-    while 1:
-        current_time = time.time()
+    # while 1:
+    #     current_time = time.time()
 
-        if (current_time - last_msg_time) > msg_interval:
-            last_msg_time = current_time
-            current_time_us = int(current_time * 1.0e6) # Mavproxy wants micro seconds
+    #     if (current_time - last_msg_time) > msg_interval:
+    #         last_msg_time = current_time
+    #         current_time_us = int(current_time * 1.0e6) # Mavproxy wants micro seconds
 
-            # Update the drone's position from the mocap:
-            # Get info from mocap
-            [drone_pos, drone_rot] = mocap_connection.rigid_body_dict[1]
+    #         # Update the drone's position from the mocap:
+    #         # Get info from mocap
+    #         [drone_pos, drone_rot] = mocap_connection.rigid_body_dict[1]
 
-            # Update drone's current state
-            update_drone_state(drone, current_time_us, drone_pos, drone_rot)
+    #         # Update drone's current state
+    #         update_drone_state(drone, current_time_us, drone_pos, drone_rot)
 
-            # Wait for the next LOCAL_POSITION_NED message
-            msg = drone.recv_match(type='LOCAL_POSITION_NED', blocking=True)
+    #         # Wait for the next LOCAL_POSITION_NED message
+    #         msg = drone.recv_match(type='LOCAL_POSITION_NED', blocking=True)
             
-            print('Current height: ' + str(msg.z*-1.))
+    #         print('Current height: ' + str(msg.z*-1.))
 
-            # Check if altitude is within a threshold of the target altitude
-            if msg.z*-1. < takeoff_alt: # z is negative because of drone's NED coordinate frame
-                print('Takeoff Success') 
-                break
-    return
+    #         # Check if altitude is within a threshold of the target altitude
+    #         if msg.z*-1. < takeoff_alt: # z is negative because of drone's NED coordinate frame
+    #             print('Takeoff Success') 
+    #             break
+    # return
 
 
 
 ###-------------------------------------------------------------------------------------###
-##                               Set GPS Origin                                         ###
+###                              Set GPS Origin                                         ###
 ###-------------------------------------------------------------------------------------###
-# NOTE: mav_command_long isn't the appropriate command, this is broken
-#       https://ardupilot.org/dev/docs/mavlink-get-set-home-and-origin.html
 def set_drone_gps_global_origin(drone):
     # Set the origin of the GPS, accordinig to mavproxy this does not need to be accurate, 
     # just needs to be initialized: https://ardupilot.org/copter/docs/common-optitrack.html
     # 1st param: Target system
-    drone.mav.command_long_send(drone.target_system, drone.target_component, 
-                                mavutil.mavlink.SET_GPS_GLOBAL_ORIGIN, 6, 6, 6, 0, 0, 0, 0, 0)
+    # 2nd, 3rd, 4th: Lat, long, altitude
+    # 5th: Time
+    drone.mav.set_gps_global_origin_send(drone.target_system, 400150000, -1052705000, 1624000, 0)
     return
 
 
 ###-------------------------------------------------------------------------------------###
-##                                    Land                                              ###
+###                                   Land                                              ###
 ###-------------------------------------------------------------------------------------###
 # NOT VERIFIED
 def land(drone): 
@@ -153,7 +175,7 @@ def land(drone):
     return
 
 ###-------------------------------------------------------------------------------------###
-##                      Update Drone Attitude and Position                              ###
+###                     Update Drone Attitude and Position                              ###
 ###-------------------------------------------------------------------------------------###
 def update_drone_state(drone, connection_time, drone_pos, drone_rot):
     """ Update the drones attitude and position
@@ -171,42 +193,58 @@ def update_drone_state(drone, connection_time, drone_pos, drone_rot):
     return
 
 ###-------------------------------------------------------------------------------------###
-##                               Initialize GPS                                         ###
+###                              Mocap Streaming Thread                                 ###
 ###-------------------------------------------------------------------------------------###
-def initalize_gps(drone, mocap_connection, init_time):
-    """ Initialize the drone's GPS, this requires a few updates of the drone's position
+#class definition
+class threaded_mocap_streaming(threading.Thread):
+    #Constructor for class
+    def __init__(self, thread_name, thread_ID, drone_connection, mocap_connection, init_time):
+        threading.Thread.__init__(self)
+        self.setDaemon(True)
+        self.thread_name = thread_name
+        self.threadID = thread_ID
+        self.drone_connection = drone_connection
+        self.mocap_connection = mocap_connection
+        self.init_time = init_time
+    # Streaming Loop
+    def run(self):
+        """ Initialize the drone's GPS, this requires a few updates of the drone's position
+        Inputs:
+            drone: connection to drone, obtained from drone_connect()
+            mocap_connection: connection to mocap, obtained from mocap_connect() in
+                            Custom_Mocap_Commands.py
+            init_time: Time in seconds when the main script started 
+        """
+        pause_between_updates = .1 # seconds
+        
+
+        # Do it
+        while True:
+
+            time.sleep(pause_between_updates)
+
+            # Get info from mocap
+            [drone_pos, drone_rot] = self.mocap_connection.rigid_body_dict[1]
+            # print(f"Current altitude (m): {drone_pos[1]}")
+
+            # Update drone's current state
+            update_drone_state(self.drone_connection, time.time()-self.init_time, drone_pos, drone_rot)
+        
+        return
+
+###-------------------------------------------------------------------------------------###
+###                                Receive Mav Message                                  ###
+###-------------------------------------------------------------------------------------###
+def receive_mav_message(drone):
+    """ Blocks the thread and waits to receive a message from mavlink. Also prints the
+    time stamp when the message was received. Used for debugging purposes
     Inputs:
         drone: connection to drone, obtained from drone_connect()
-        mocap_connection: connection to mocap, obtained from mocap_connect() in
-                          Custom_Mocap_Commands.py
-        init_time: Time in seconds when the main script started 
     """
-    num_updates = 50
-    current_update = 0
-    pause_between_updates = 0.1 # seconds
-
-    # Tell user how long this will take
-    print(f'Initializing GPS ({pause_between_updates*num_updates} s)')
-    
-    # Get the current position
-    error_threshold = 0.1 # meters
-    [drone_pos, drone_rot] = mocap_connection.rigid_body_dict[1]
-    initial_height = drone_pos[1]
-
-    if abs(initial_height) > error_threshold:
-        print(f"Warning: starting height is above the acceptable threshold ({error_threshold} m)")
-
-    # Do it
-    while current_update < num_updates:
-        current_update += 1
-
-        time.sleep(pause_between_updates)
-
-        # Get info from mocap
-        [drone_pos, drone_rot] = mocap_connection.rigid_body_dict[1]
-        print(f"Current altitude (m): {drone_pos[1]}")
-
-        # Update drone's current state
-        update_drone_state(drone, time.time()-init_time, drone_pos, drone_rot)
-    
+    print(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))
+    msg = drone.recv_match(type = 'COMMAND_ACK', blocking = True)
+    print(msg)
     return
+
+
+
