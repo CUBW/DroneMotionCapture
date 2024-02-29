@@ -150,7 +150,7 @@ def takeoff(drone, mocap_connection, init_time, takeoff_alt):
     #             break
     # return
 
-def goto_NED_point(drone_connection, x, y, z, init_time):
+def goto_NED_point(drone_connection, x, y, z, init_time, accuracy):
     # 3576 position
     # 3527 velocity 
     # 3135 acceleration
@@ -162,6 +162,26 @@ def goto_NED_point(drone_connection, x, y, z, init_time):
     position_mask = int(3576) # use position
     time_us = int((time.time()-init_time) * 1.0e6)
     drone_connection.mav.set_position_target_local_ned_send(time_us, drone_connection.target_system, drone_connection.target_component, 1, position_mask, x, y, z, 0, 0, 0, 0, 0, 0, 0, 0)
+    #drone_connection.mav.request_data_stream_send(drone_connection.target_system, drone_connection.target_component, mavutil.mavlink.MAV_DATA_STREAM_POSITION,1,1)
+
+    #while True:
+    #    message = drone_connection.recv_match(type='LOCAL_POSITION_NED', blocking=True)
+    #    if message:
+    #       drone_x = message.x
+    #       drone_y = message.y
+    #        drone_z = message.z 
+    #        print(f"X: {drone_x}, Y: {drone_y}, Z: {drone_z}") 
+    #        if abs(x-drone_x) < accuracy and abs(y-drone_y) < accuracy and abs(z-drone_z) < accuracy:
+    #            print("Drone has reached position")
+    #            break
+    return
+
+
+
+
+def disarm(drone_connection):
+    drone_connection.mav.command_long_send(drone_connection.target_system, drone_connection.target_component, 
+                                 mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM, 0, 0, 0, 0, 0, 0, 0, 0)
 
 ###-------------------------------------------------------------------------------------###
 ###                              Set GPS Origin                                         ###

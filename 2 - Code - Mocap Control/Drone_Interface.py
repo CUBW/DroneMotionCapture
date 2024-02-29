@@ -30,14 +30,37 @@ time.sleep(2)
 
 # Take off
 take_off_height = .5 # meter
-x1 = -1
-z1 = 0
-y1 = -.5
 takeoff(drone_connection, streaming_client, init_time, take_off_height)
-time.sleep(5)
+time.sleep(8)
 print("moving to postion")
-goto_NED_point(drone_connection, x1, y1, z1, init_time)
-print("got there!")
+x1 = -1
+z1 = -.75
+y1 = 0
+accuracy = .10
+goto_NED_point(drone_connection, x1, y1, z1, init_time, accuracy)
+time.sleep(8)
+print("moving to postion")
+x1 = 1
+z1 = -.75
+y1 = 0
+accuracy = .10
+goto_NED_point(drone_connection, x1, y1, z1, init_time, accuracy)
+time.sleep(8)
+print("moving to postion")
+x2 = 0
+z2 = -.75
+y2 = 0
+accuracy = .10
+goto_NED_point(drone_connection, x2, y2, z2, init_time, accuracy)
+time.sleep(8)
+print("Landing")
+x3 = 0
+z3 = 0
+y3 = 0
+accuracy = .10
+goto_NED_point(drone_connection, x3, y3, z3, init_time, accuracy)
+time.sleep(8)
+disarm(drone_connection)
 time.sleep(300)
 # Do more interesting things:
 
