@@ -28,29 +28,29 @@ mocap_stream.start()
 time.sleep(2)
 
 
-# Take off
+#Take off
 take_off_height = .5 # meter
 takeoff(drone_connection, streaming_client, init_time, take_off_height)
 time.sleep(8)
 print("moving to postion")
 x1 = -1
-z1 = -.75
+z1 = -.5
 y1 = 0
-accuracy = .10
+accuracy = .05
 goto_NED_point(drone_connection, x1, y1, z1, init_time, accuracy)
 time.sleep(8)
 print("moving to postion")
 x1 = 1
-z1 = -.75
+z1 = -.5
 y1 = 0
-accuracy = .10
+accuracy = .05
 goto_NED_point(drone_connection, x1, y1, z1, init_time, accuracy)
 time.sleep(8)
 print("moving to postion")
 x2 = 0
-z2 = -.75
+z2 = -.5
 y2 = 0
-accuracy = .10
+accuracy = .05
 goto_NED_point(drone_connection, x2, y2, z2, init_time, accuracy)
 time.sleep(8)
 print("Landing")
