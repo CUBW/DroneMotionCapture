@@ -42,13 +42,10 @@ def drone_connect(port):
 ###-------------------------------------------------------------------------------------###
 ###                                  Take Off                                           ###
 ###-------------------------------------------------------------------------------------###
-def takeoff(drone, mocap_connection, init_time, takeoff_alt):
+def takeoff(drone, takeoff_alt):
     """ Takeoff
     Inputs:
         drone:            Drone connection object, obtained from drone_connect(port)
-        mocap_connection: A streaming client created from mocap_connect in 
-                          Custom_Mocap_Commands
-        init_time:        Time in seconds when the main script started 
         takeoff_alt:      Desired altitue, in positive meters. 
     """
     # The drone's coordinate frame is NED, meaning the ground is zero and the higher you go 
@@ -150,6 +147,58 @@ def takeoff(drone, mocap_connection, init_time, takeoff_alt):
     #             break
     # return
 
+
+
+###-------------------------------------------------------------------------------------###
+###                                  Take Off THread (swarm)                            ###
+###-------------------------------------------------------------------------------------###
+
+
+class TakeoffThread(threading.Thread):
+    def __init__(self, drone, takeoff_alt, accuracy):
+        super().__init__()
+        self.drone = drone
+        self.accuracy = accuracy
+        self.takeoff_alt = takeoff_alt
+        self._stop_event = threading.Event()  # Event to stop the thread
+
+    def run(self):
+        # Set flight mode to guided
+        flight_mode = 4
+        self.drone.mav.set_mode_send(self.drone.target_system, mavutil.mavlink.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, flight_mode)
+
+        # Arm throttle
+        print("Arming Throttle:")
+        self.drone.mav.command_long_send(self.drone.target_system, self.drone.target_component, 
+                                         mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM, 0, 1, 0, 0, 0, 0, 0, 0)
+        
+        msg = drone.recv_match(type = 'COMMAND_ACK', blocking = True)
+        print(msg) #"result: 0" if it executed without error. If you get result: 4, you probably need to set the copter to guided mode.
+
+        # Wait for drone to start up
+        time.sleep(5)
+
+        # Send takeoff command
+        print("Attempting Takeoff:")
+        print(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))
+        self.drone.mav.command_long_send(self.drone.target_system, self.drone.target_component, 
+                                         mavutil.mavlink.MAV_CMD_NAV_TAKEOFF, 0, 0, 0, 0, 0, 0, 0, self.takeoff_alt)
+
+        # Wait for takeoff completion
+        while not self._stop_event.is_set():
+            message = self.drone.recv_match(type='LOCAL_POSITION_NED', blocking=True)
+            if message:
+                drone_z = message.z
+                print(f"Z: {drone_z}")
+                if abs(drone_z - self.takeoff_alt) < self.accuracy:
+                    print("Drone has reached desired altitude")
+                    self.stop()
+
+    def stop(self):
+        self._stop_event.set()
+
+
+
 def goto_NED_point(drone_connection, x, y, z, init_time, accuracy):
     # 3576 position
     # 3527 velocity 
@@ -175,6 +224,43 @@ def goto_NED_point(drone_connection, x, y, z, init_time, accuracy):
                 print("Drone has reached position")
                 break
     return
+
+###-------------------------------------------------------------------------------------###
+###                              Thread for goto NED point (swarm)                      ###
+###-------------------------------------------------------------------------------------###
+
+class GotoNEDPointThread(threading.Thread):
+    def __init__(self, drone_connection, x, y, z, init_time, accuracy):
+        super().__init__()
+        self.drone_connection = drone_connection
+        self.x = x
+        self.y = y
+        self.z = z
+        self.init_time = init_time
+        self.accuracy = accuracy
+        self._stop_event = threading.Event()  # Event to stop the thread
+
+    def run(self):
+        position_mask = int(3576)
+        time_us = int((time.time() - self.init_time) * 1.0e6)
+        self.drone_connection.mav.set_position_target_local_ned_send(
+            time_us, self.drone_connection.target_system, self.drone_connection.target_component, 1, position_mask,
+            self.x, self.y, self.z, 0, 0, 0, 0, 0, 0, 0, 0)
+
+        while not self._stop_event.is_set():
+            message = self.drone_connection.recv_match(type='LOCAL_POSITION_NED', blocking=True)
+            if message:
+                drone_x = message.x
+                drone_y = message.y
+                drone_z = message.z
+                print(f"X: {drone_x}, Y: {drone_y}, Z: {drone_z}")
+                if abs(self.x - drone_x) < self.accuracy and abs(self.y - drone_y) < self.accuracy and abs(
+                        self.z - drone_z) < self.accuracy:
+                    print("Drone has reached position")
+                    self.stop()
+
+    def stop(self):
+        self._stop_event.set()
 
 
 
@@ -229,7 +315,7 @@ def update_drone_state(drone, connection_time, drone_pos, drone_rot):
 #class definition
 class threaded_mocap_streaming(threading.Thread):
     #Constructor for class
-    def __init__(self, thread_name, thread_ID, drone_connection, mocap_connection, init_time):
+    def __init__(self, thread_name, thread_ID, drone_connection, mocap_connection, init_time, rigid_body_id):
         threading.Thread.__init__(self)
         self.setDaemon(True)
         self.thread_name = thread_name
@@ -237,6 +323,7 @@ class threaded_mocap_streaming(threading.Thread):
         self.drone_connection = drone_connection
         self.mocap_connection = mocap_connection
         self.init_time = init_time
+        self.rigid_body_id = rigid_body_id
     # Streaming Loop
     def run(self):
         """ Initialize the drone's GPS, this requires a few updates of the drone's position
@@ -255,7 +342,7 @@ class threaded_mocap_streaming(threading.Thread):
             time.sleep(pause_between_updates)
 
             # Get info from mocap
-            [drone_pos, drone_rot] = self.mocap_connection.rigid_body_dict[1]
+            [drone_pos, drone_rot] = self.mocap_connection.rigid_body_dict[self.rigid_body_id]
             #print(f"Current altitude (m): {drone_pos[1]}")
 
             # Update drone's current state

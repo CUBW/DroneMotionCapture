@@ -21,7 +21,8 @@ drone_connection = drone_connect(14550) #udp connection to ardupilot
 set_drone_gps_global_origin(drone_connection)
 
 # Mocap Streaming Thread, will run until you terminate THIS's files terminal.
-mocap_stream = threaded_mocap_streaming("stream1", 1, drone_connection, streaming_client, init_time) 
+drone_rigid_body_id = 2
+mocap_stream = threaded_mocap_streaming("stream1", 1, drone_connection, streaming_client, init_time, drone_rigid_body_id) 
 mocap_stream.start() 
 #FC_postion_stream = threaded_postion_report("stream2", 2, drone_connection, init_time)
 #FC_postion_stream.start()
@@ -30,7 +31,7 @@ time.sleep(2)
 
 #Take off
 take_off_height = .5 # meter
-takeoff(drone_connection, streaming_client, init_time, take_off_height)
+takeoff(drone_connection, take_off_height)
 time.sleep(8)
 print("moving to postion")
 x1 = -1
