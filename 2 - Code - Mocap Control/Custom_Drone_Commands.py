@@ -155,13 +155,13 @@ def takeoff(drone, takeoff_alt):
 
 
 class TakeoffThread(threading.Thread):
-    def __init__(self, drone, takeoff_alt, accuracy):
+    def __init__(self, drone, takeoff_alt, accuracy, init_time):
         super().__init__()
         self.drone = drone
         self.accuracy = accuracy
         self.takeoff_alt = takeoff_alt
         self._stop_event = threading.Event()  # Event to stop the thread
-
+        self.init_time = init_time
     def run(self):
         # Set flight mode to guided
         flight_mode = 4
@@ -172,11 +172,11 @@ class TakeoffThread(threading.Thread):
         self.drone.mav.command_long_send(self.drone.target_system, self.drone.target_component, 
                                          mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM, 0, 1, 0, 0, 0, 0, 0, 0)
         
-        msg = drone.recv_match(type = 'COMMAND_ACK', blocking = True)
+        msg = self.drone.recv_match(type = 'COMMAND_ACK', blocking = True)
         print(msg) #"result: 0" if it executed without error. If you get result: 4, you probably need to set the copter to guided mode.
 
         # Wait for drone to start up
-        time.sleep(5)
+        time.sleep(3)
 
         # Send takeoff command
         print("Attempting Takeoff:")
@@ -185,14 +185,17 @@ class TakeoffThread(threading.Thread):
                                          mavutil.mavlink.MAV_CMD_NAV_TAKEOFF, 0, 0, 0, 0, 0, 0, 0, self.takeoff_alt)
 
         # Wait for takeoff completion
-        while not self._stop_event.is_set():
+        position_mask = int(3576) # use position
+        time_us = int((time.time()-self.init_time) * 1.0e6)
+        self.drone.mav.set_position_target_local_ned_send(time_us, self.drone.target_system, self.drone.target_component, 1, position_mask, 0, 0, self.takeoff_alt, 0, 0, 0, 0, 0, 0, 0, 0)
+        while True:
             message = self.drone.recv_match(type='LOCAL_POSITION_NED', blocking=True)
             if message:
                 drone_z = message.z
                 print(f"Z: {drone_z}")
                 if abs(drone_z - self.takeoff_alt) < self.accuracy:
                     print("Drone has reached desired altitude")
-                    self.stop()
+                    break
 
     def stop(self):
         self._stop_event.set()
