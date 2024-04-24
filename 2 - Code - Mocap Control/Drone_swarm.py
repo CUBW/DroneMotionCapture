@@ -7,63 +7,148 @@ from Custom_Mocap_Commands import *
 ###### MAIN ######
 init_time = time.time()
 
+num_of_drones = 2
+
 # Mocap connection:
 streaming_client = mocap_connect()
 
 is_running = streaming_client.run()
 
+
 # Drone connection
-drone1_port = 14550 
-drone2_port = 14551
-drone1_connection = drone_connect(drone1_port) #udp connection to ardupilot
-drone2_connection = drone_connect(drone2_port)
-set_drone_gps_global_origin(drone1_connection)
-set_drone_gps_global_origin(drone2_connection)
+swarm_ports = [14550, 14551, 14552] 
+swarm_connections= []
+swarm_mocap_streaming_threads = []
+
+for port in swarm_ports:
+    connection = drone_connect(port)
+    swarm_connections.append(connection)
+
 time.sleep(3)
 # Mocap Streaming Thread, will run until you terminate THIS's files terminal.
-drone1_rigid_body = 2
-drone2_rigid_body = 3
-accuracy = .10
-drone1_mocap_stream = threaded_mocap_streaming("stream1", 1, drone1_connection, streaming_client, init_time, drone1_rigid_body) 
-drone2_mocap_stream = threaded_mocap_streaming("stream2", 2, drone2_connection, streaming_client, init_time, drone2_rigid_body) 
-drone1_mocap_stream.start()
-drone2_mocap_stream.start() 
 
+swarm_rigid_body_id_list = [6,9,8]
+
+stream_id = 1
+for id, connection in zip(swarm_rigid_body_id_list, swarm_connections):
+    stream_id_string = "stream" + str(stream_id)
+    threaded_mocap_drone_stream = threaded_mocap_streaming(stream_id_string, stream_id, connection, streaming_client, init_time, id)
+    swarm_mocap_streaming_threads.append(threaded_mocap_drone_stream)
+
+accuracy = .10
+
+for drone_mocap_thread_stream in swarm_mocap_streaming_threads:
+    drone_mocap_thread_stream.start()
+
+time.sleep(2)
+for drone_connection in swarm_connections:
+    set_drone_gps_global_origin(drone_connection)
 time.sleep(3)
 
 take_off_height = .5
-set_drone_gps_global_origin(drone1_connection)
-set_drone_gps_global_origin(drone2_connection)
-drone1_takeoff_thread = TakeoffThread(drone1_connection, take_off_height, accuracy, init_time)
-drone2_takeoff_thread = TakeoffThread(drone2_connection, take_off_height, accuracy, init_time)
+drone1_takeoff_thread = TakeoffThread(swarm_connections[0], take_off_height, accuracy, init_time)
+drone2_takeoff_thread = TakeoffThread(swarm_connections[1], take_off_height, accuracy, init_time)
+drone3_takeoff_thread = TakeoffThread(swarm_connections[2], take_off_height, accuracy, init_time)
 
 drone1_takeoff_thread.start()
 drone2_takeoff_thread.start()
+drone3_takeoff_thread.start()
 
 drone1_takeoff_thread.join()
 drone2_takeoff_thread.join()
+drone3_takeoff_thread.join()
 
-print("both drones have taken off")
-x1 = 0
-y1 = 0
-z1 = 0
+time.sleep(1)
 
-x2 = 1
-y2 = 0
-z2 = 0
-
-drone1_goto_ned_thread = GotoNEDPointThread(drone1_connection, x1, y1, z1, init_time, accuracy)
-drone2_goto_ned_thread = GotoNEDPointThread(drone2_connection, x2, y2, z2, init_time, accuracy)
-drone1_goto_ned_thread.start()
-drone2_goto_ned_thread.start()
-
-drone1_goto_ned_thread.join()
-drone2_goto_ned_thread.join()
-
-disarm(drone1_connection)
-disarm(drone2_connection)
+print("all drones have taken off")
 
 
+accuracy = .15
+
+# swarm_target_positions = [[-1,.5,-.5],[0,.5,-.5],[1,.5,-.5]]
+# goto_ned_threads = []
+
+# for drone_connection, target_position in zip(swarm_connections, swarm_target_positions):
+#     x = target_position[0]
+#     y = target_position[1]
+#     z = target_position[2]
+#     goto_NED_point_thread = GotoNEDPointThread(drone_connection, x, y, z, init_time, accuracy)
+#     goto_ned_threads.append(goto_NED_point_thread)
+
+# for thread in goto_ned_threads:
+#     thread.start()
+
+# for thread in goto_ned_threads:
+#     thread.join()
+
+# swarm_target_positions = [[-1,-.5,-.5],[0,0,-.5],[1,-.5,-.5]]
+# goto_ned_threads = []
+
+# for drone_connection, target_position in zip(swarm_connections, swarm_target_positions):
+#     x = target_position[0]
+#     y = target_position[1]
+#     z = target_position[2]
+#     goto_NED_point_thread = GotoNEDPointThread(drone_connection, x, y, z, init_time, accuracy)
+#     goto_ned_threads.append(goto_NED_point_thread)
+
+# for thread in goto_ned_threads:
+#     thread.start()
+
+# for thread in goto_ned_threads:
+#     thread.join()
+
+
+# swarm_target_positions = [[-1,0,-.5],[0,0,-.5],[1,0,-.5]]
+# goto_ned_threads = []
+
+# for drone_connection, target_position in zip(swarm_connections, swarm_target_positions):
+#     x = target_position[0]
+#     y = target_position[1]
+#     z = target_position[2]
+#     goto_NED_point_thread = GotoNEDPointThread(drone_connection, x, y, z, init_time, accuracy)
+#     goto_ned_threads.append(goto_NED_point_thread)
+
+# for thread in goto_ned_threads:
+#     thread.start()
+
+# for thread in goto_ned_threads:
+#     thread.join()
+
+rotating_triangle = RotatingTriangle(25)
+
+iterations = 20
+
+accuracy = .20
+
+while True:
+    swarm_target_positions = rotating_triangle.get_triangle_coordinates()
+
+    goto_ned_threads = []
+
+    for drone_connection, target_position in zip(swarm_connections, swarm_target_positions):
+        x = target_position[0]
+        y = target_position[1]
+        z = target_position[2]
+        goto_NED_point_thread = GotoNEDPointThread(drone_connection, x, y, z, init_time, accuracy)
+        goto_ned_threads.append(goto_NED_point_thread)
+
+    for thread in goto_ned_threads:
+        thread.start()
+
+    for thread in goto_ned_threads:
+        thread.join()
+    iterations = iterations -1
+
+    if iterations == 0:
+        break
+
+
+for drone in swarm_connections:
+    set_mode_land(drone)
+
+for drone in swarm_connections:
+    disarm(drone)
 
 
 time.sleep(2)
+

@@ -13,6 +13,8 @@
 from pymavlink import mavutil
 import time # Used to sleep while the drone ramps up
 import threading #Used to create process to constantly send mocap data
+import math
+import matplotlib.pyplot as plt
 
 ###-------------------------------------------------------------------------------------###
 ###                               Connect to Drone                                      ###
@@ -176,26 +178,26 @@ class TakeoffThread(threading.Thread):
         print(msg) #"result: 0" if it executed without error. If you get result: 4, you probably need to set the copter to guided mode.
 
         # Wait for drone to start up
-        time.sleep(3)
+        time.sleep(5)
 
         # Send takeoff command
         print("Attempting Takeoff:")
         print(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))
         self.drone.mav.command_long_send(self.drone.target_system, self.drone.target_component, 
                                          mavutil.mavlink.MAV_CMD_NAV_TAKEOFF, 0, 0, 0, 0, 0, 0, 0, self.takeoff_alt)
-
+        time.sleep(5)
         # Wait for takeoff completion
-        position_mask = int(3576) # use position
-        time_us = int((time.time()-self.init_time) * 1.0e6)
-        self.drone.mav.set_position_target_local_ned_send(time_us, self.drone.target_system, self.drone.target_component, 1, position_mask, 0, 0, self.takeoff_alt, 0, 0, 0, 0, 0, 0, 0, 0)
-        while True:
-            message = self.drone.recv_match(type='LOCAL_POSITION_NED', blocking=True)
-            if message:
-                drone_z = message.z
-                print(f"Z: {drone_z}")
-                if abs(drone_z - self.takeoff_alt) < self.accuracy:
-                    print("Drone has reached desired altitude")
-                    break
+        #position_mask = int(3576) # use position
+        #time_us = int((time.time()-self.init_time) * 1.0e6)
+        #self.drone.mav.set_position_target_local_ned_send(time_us, self.drone.target_system, self.drone.target_component, 1, position_mask, 0, 0, self.takeoff_alt, 0, 0, 0, 0, 0, 0, 0, 0)
+        #while True:
+        #    message = self.drone.recv_match(type='LOCAL_POSITION_NED', blocking=True)
+        #    if message:
+         #       drone_z = message.z
+          #      print(f"Z: {drone_z}")
+           #     if abs(drone_z - self.takeoff_alt) < self.accuracy:
+            #        print("Drone has reached desired altitude")
+             #       break
 
     def stop(self):
         self._stop_event.set()
@@ -271,6 +273,11 @@ class GotoNEDPointThread(threading.Thread):
 def disarm(drone_connection):
     drone_connection.mav.command_long_send(drone_connection.target_system, drone_connection.target_component, 
                                  mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM, 0, 0, 0, 0, 0, 0, 0, 0)
+
+def set_mode_land (drone_connection):
+    flight_mode = 9 
+    drone_connection.mav.set_mode_send(drone_connection.target_system, mavutil.mavlink.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, flight_mode) 
+    
 
 ###-------------------------------------------------------------------------------------###
 ###                              Set GPS Origin                                         ###
@@ -393,4 +400,122 @@ def receive_mav_message(drone):
     return
 
 
+###-------------------------------------------------------------------------------------###
+###                              Flight Controller Position Thread                      ###
+###-------------------------------------------------------------------------------------###
+#class definition
+class threaded_swarm_positions(threading.Thread):
+    #Constructor for class
+    def __init__(self, thread_name, thread_ID, drone_connection_list, init_time):
+        threading.Thread.__init__(self)
+        self.setDaemon(True)
+        self.thread_name = thread_name
+        self.threadID = thread_ID
+        self.drone_connection_list = drone_connection_list
+        self.init_time = init_time
+    # get drone postion Loop
+    def run(self):
+        #Request GLOBAL_POSITION_INT message be sent at regular interva
 
+        self.drone_connection.mav.request_data_stream_send(self.drone_connection.target_system, self.drone_connection.target_component, mavutil.mavlink.MAV_DATA_STREAM_POSITION,1,1)
+        while True:
+            message = self.drone_connection.recv_match(type='GLOBAL_POSITION_INT', blocking=True)
+            if message:
+                altitude_amsl = message.alt / 1000.0
+                relative_altitude = message.relative_alt /1000.0
+                print(f"Altitude above mean sea level: {altitude_amsl} meters, Relative Altitude: {relative_altitude} meters") 
+        return
+    def initialize_swarm_position_vars(num_of_drones):
+        if num_of_drones > 0:
+            global drone1_x
+            global drone1_y
+            global drone1_z
+            drone1_x = 0
+            drone1_y = 0
+            drone1_z = 0
+
+        if num_of_drones > 1:
+            global drone2_x
+            global drone2_y
+            global drone2_z
+            drone2_x = 0
+            drone2_y = 0
+            drone2_z = 0 
+
+        if num_of_drones > 2:
+            global drone3_x
+            global drone3_y
+            global drone3_z
+            drone3_x = 0
+            drone3_y = 0
+            drone3_z = 0 
+
+        if num_of_drones > 3:
+            global drone4_x
+            global drone4_y
+            global drone4_z
+            drone4_x = 0
+            drone4_y = 0
+            drone4_z = 0 
+
+        if num_of_drones > 4:
+            global drone5_x
+            global drone5_y
+            global drone5_z
+            drone5_x = 0
+            drone5_y = 0
+            drone5_z = 0 
+
+
+class RotatingTriangle:
+    def __init__(self, angle):
+        self.angle = angle
+        self.radius = .75
+
+    def get_triangle_coordinates(self):
+        # Calculate the coordinates of the initial triangle
+        x1 = self.radius * math.cos(0)
+        y1 = self.radius * math.sin(0)
+
+        x2 = self.radius * math.cos(2 * math.pi / 3)
+        y2 = self.radius * math.sin(2 * math.pi / 3)
+
+        x3 = self.radius * math.cos(4 * math.pi / 3)
+        y3 = self.radius * math.sin(4 * math.pi / 3)
+
+        # Rotate the coordinates around the origin
+        new_x1 = x1 * math.cos(self.angle) - y1 * math.sin(self.angle)
+        new_y1 = x1 * math.sin(self.angle) + y1 * math.cos(self.angle)
+
+        new_x2 = x2 * math.cos(self.angle) - y2 * math.sin(self.angle)
+        new_y2 = x2 * math.sin(self.angle) + y2 * math.cos(self.angle)
+
+        new_x3 = x3 * math.cos(self.angle) - y3 * math.sin(self.angle)
+        new_y3 = x3 * math.sin(self.angle) + y3 * math.cos(self.angle)
+
+        # Increment the angle for the next call
+        self.angle += math.radians(self.angle)  # Increment by 30 degrees (convert to radians)
+
+        return [[new_x1, new_y1, -.5], [new_x2, new_y2, -.5], [new_x3, new_y3, -.5]]
+
+# rotating_triangle = RotatingTriangle(10)
+# colors = ['r', 'g', 'b', 'c', 'm']  # Different colors for each triangle position
+# for _ in range(5):  # Plot the next 5 positions
+#     triangle_coords = rotating_triangle.get_triangle_coordinates()
+#     x_coords = [coord[0] for coord in triangle_coords]  # Extract x coordinates
+#     y_coords = [coord[1] for coord in triangle_coords]  # Extract y coordinates
+#     plt.plot(x_coords + [x_coords[0]], y_coords + [y_coords[0]], color=colors[_])  # Connect first and last points to close the triangle
+
+# # Set plot limits
+# plt.xlim(-1.5, 1.5)
+# plt.ylim(-1.5, 1.5)
+
+# # Add labels and title
+# plt.xlabel('X')
+# plt.ylabel('Y')
+# plt.title('Rotating Triangle')
+
+# # Show plot
+# plt.grid(True)
+# plt.gca().set_aspect('equal', adjustable='box')
+# plt.show()
