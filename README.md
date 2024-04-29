@@ -3,7 +3,7 @@
 1. [Basic Build and eCalc Statistics](#1-basic-build-and-ecalc-statistics)
 2. [Physical Assembly](#2-physical-assembly)
    - [Flight Controller](#flight-controller)
-   - [ESC](#electronic-speed-controller)
+   - [ESC](#electronic-speed-controller-(esc))
    - [Raspberry Pi](#raspberry-pi)
 3. [Firmware](#3-firmware)
    - [Flight Controller - ArduPilot/Kakute H7](#flight-controller---ardupilotkakute-h7)
