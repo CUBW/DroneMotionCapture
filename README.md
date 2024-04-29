@@ -44,10 +44,14 @@ For our flight controller we are using  Kakute h7 mini 1.3s. Compatible with Ard
 
 ![My Image](documentation_images/kakute_h7_pic.png)
 
-#### Raspberry Pi
-For our initial setup, we are using Pi only as antenna, so we much make four connections, 5v, Ground, Tx (transmit pin), and Rx (recieve pin). 
+For wiring with PI, we are using Pi only as antenna, so we much make four connections, 5v, Ground, Tx (transmit pin), and Rx (recieve pin). 
 
 ![My Image](documentation_images/fc_and_pi.jpg)
+
+#### Raspberry Pi
+Additionally, we added a button to the raspberry pi in order to properly turn off pi (Pi must be turned off before battery is unplugged, otherwise pi does not shut down correctly). 
+
+![My Image](documentation_images/pi_draw.jpg)
 
 #### Electronic Speed Controller (ESC)
 Flight controller comes with 6 pin JST connector, but our ESC has a different pin mapping, so the connector has been repinned as such:
