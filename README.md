@@ -55,6 +55,9 @@ Flight controller comes with 6 pin JST connector, but our ESC has a different pi
 ![My Image](documentation_images/pi_draw_andFC.jpg)
 
 #### First-Person View (FPV) Camera
+
+![My Image](documentation_images/fc_and_cam.jpg)
+
 ### ESC
 #### Battery Connector
 #### Motors
