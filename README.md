@@ -59,6 +59,9 @@ Flight controller comes with 6 pin JST connector, but our ESC has a different pi
 ![My Image](documentation_images/fc_and_cam.jpg)
 
 ### ESC
+
+![My Image](documentation_images/esc_and_motors.jpg)
+
 #### Battery Connector
 #### Motors
 ### Raspberry Pi
