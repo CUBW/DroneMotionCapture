@@ -50,6 +50,9 @@ For our initial setup, we are using Pi only as antenna, so we much make four con
 ![My Image](documentation_images/fc_and_pi.jpg)
 
 #### Electronic Speed Controller (ESC)
+
+![My Image](documentation_images/pi_draw_andFC.jpg)
+
 #### First-Person View (FPV) Camera
 ### ESC
 #### Battery Connector
