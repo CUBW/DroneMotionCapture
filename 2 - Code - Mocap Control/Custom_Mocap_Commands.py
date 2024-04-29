@@ -71,3 +71,7 @@ def print_configuration(natnet_client):
        nat_net_requested_version[2], nat_net_requested_version[3]))
     #print("command_socket = %s"%(str(natnet_client.command_socket)))
     #print("data_socket    = %s"%(str(natnet_client.data_socket)))
+
+
+stream_client = mocap_connect()
+print_configuration(stream_client)
