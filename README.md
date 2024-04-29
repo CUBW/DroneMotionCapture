@@ -48,6 +48,10 @@ For wiring with PI, we are using Pi only as antenna, so we much make four connec
 
 ![My Image](documentation_images/fc_and_pi.jpg)
 
+For Wiring FPV Camera, our model has it's own antenna, so we only need 5v and GND
+
+![My Image](documentation_images/fc_and_cam.jpg)
+
 #### Raspberry Pi
 Additionally, we added a button to the raspberry pi in order to properly turn off pi (Pi must be turned off before battery is unplugged, otherwise pi does not shut down correctly). 
 
@@ -58,17 +62,10 @@ Flight controller comes with 6 pin JST connector, but our ESC has a different pi
 
 ![My Image](documentation_images/pi_draw_andFC.jpg)
 
-#### First-Person View (FPV) Camera
-
-![My Image](documentation_images/fc_and_cam.jpg)
-
-### ESC + Battery Connection
 ESC motor connections in general do not matter, motor will be able to move no matter how the three pins are connected to ESC. The only difference it makes is the direction the motor spins, which you are able to switch in ESC firmware if desired. However for ease of use, we decided to use pin connectors between motor and esc for easy direction swapping...
 
 In addition to motors, a XT30 connector is soldered onto power connections of ESC this connects direclty to 1100mah 2s High Voltage Lipo Battery. 
 ![My Image](documentation_images/esc_and_motors.jpg)
-
-### Raspberry Pi + Button
 
 ## 3. Firmware
 ### Flight Controller - ArduPilot/Kakute H7
