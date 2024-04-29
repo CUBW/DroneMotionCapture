@@ -50,6 +50,7 @@ For our initial setup, we are using Pi only as antenna, so we much make four con
 ![My Image](documentation_images/fc_and_pi.jpg)
 
 #### Electronic Speed Controller (ESC)
+Flight controller comes with 6 pin JST connector, but our ESC has a different pin mapping, so the connector has been repinned as such:
 
 ![My Image](documentation_images/pi_draw_andFC.jpg)
 
