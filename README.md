@@ -76,7 +76,7 @@ Installation guide follows general ArduCopter installation available here: https
 
 In Short the steps are: 
 
-1.Download ArduCopter.iso
+1.Download ArduCopter.iso (from repo, or latest from: https://firmware.ardupilot.org/Copter/)
 
 2.Download and Install STM32CUBEProgrammer software: https://www.st.com/en/development-tools/stm32cubeprog.html
 
