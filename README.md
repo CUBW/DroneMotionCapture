@@ -80,12 +80,12 @@ In Short the steps are:
 
 2.Download and Install STM32CUBEProgrammer software: https://www.st.com/en/development-tools/stm32cubeprog.html
 
-3. While holding down Kakute H7 mini's DFU button, connect to PC via USB
+3.While holding down Kakute H7 mini's DFU button, connect to PC via USB
 
 ![My Image](documentation_images/kakuteH7miniDFU.png)
 
 
-4. "USB Configuration" hit the refresh button, the port should change from "No DFU detected" to "USB#" # being any number. Hit connect, then device information should display at bottom of USB configuration window.
+4."USB Configuration" hit the refresh button, the port should change from "No DFU detected" to "USB#" # being any number. Hit connect, then device information should display at bottom of USB configuration window.
 
 
 ![My Image](documentation_images/STM32Cube_connection_ex.png)
