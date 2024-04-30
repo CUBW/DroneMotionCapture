@@ -92,8 +92,8 @@ Then device information should display at bottom of USB configuration window.
 
 ![My Image](documentation_images/STM32Cube_fc_connection_data.png)
 
-
-
+### Electronic Speed Controller (ESC)
+#### BLHeliSuite
 
 ### Raspberry Pi
 #### Raspbian Image Flasher
