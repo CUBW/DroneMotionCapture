@@ -99,7 +99,7 @@ Then device information should display at bottom of USB configuration window.
 After this arducopter will install on flight controller and you can disconnect when you are done...
 
 ### Electronic Speed Controller (ESC)
-Our esc comes with blheli_s, meaning we will use BLHeliSuite to configure esc settings NOT BLheliSuite32. In the only purpose of using BLHeliSuite is to reverse the direction of motors, without rewiring them. You may not need to use this configuration software you don't need to swap directions without rewiring...
+Our esc comes with blheli_s, meaning we will use BLHeliSuite to configure esc settings NOT BLheliSuite32. In our setup the only purpose of using BLHeliSuite is to reverse the direction of motors, without rewiring them. You may not need to use this configuration software you don't need to swap directions without rewiring...
 
 #### BLHeliSuite
 1.Download and Launch BLHeliSuite, available here: https://www.mediafire.com/folder/dx6kfaasyo24l/BLHeliSuite
@@ -112,7 +112,11 @@ Our esc comes with blheli_s, meaning we will use BLHeliSuite to configure esc se
 
 ![My Image](documentation_images/BLHeliSuite_select.png)
 
-5. 
+5. Now, in com window, select COM port that FC is currenlty connected under, Hit "connect", then hit "read setup"
+
+![My Image](documentation_images/BLHeliSuite_connect_read.png)
+
+
 
 
 
