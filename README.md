@@ -7,7 +7,7 @@
    - [Raspberry Pi](#raspberry-pi)
 3. [Firmware](#3-firmware)
    - [Flight Controller - ArduPilot/Kakute H7](#flight-controller---ardupilotkakute-h7)
-   - [ESC](#esc-1)
+   - [ESC](#electronic-speed-controller-esc-1)
    - [Raspberry Pi](#raspberry-pi-1)
 4. [Initial Setup](#4-initial-setup)
    - [Raspberry Pi Antenna Setup](#raspberry-pi-antenna-setup)
