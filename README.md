@@ -99,7 +99,23 @@ Then device information should display at bottom of USB configuration window.
 After this arducopter will install on flight controller and you can disconnect when you are done...
 
 ### Electronic Speed Controller (ESC)
+Our esc comes with blheli_s, meaning we will use BLHeliSuite to configure esc settings NOT BLheliSuite32. In the only purpose of using BLHeliSuite is to reverse the direction of motors, without rewiring them. You may not need to use this configuration software you don't need to swap directions without rewiring...
+
 #### BLHeliSuite
+1.Download and Launch BLHeliSuite, available here: https://www.mediafire.com/folder/dx6kfaasyo24l/BLHeliSuite
+
+2.Power Flight controller and Esc via battery (FC and ESC are connected via the modified 8-pin JST connector referened in hardware setup for FC). 
+
+3.Once stack is powered by battery, plug flight controller into computer via USB.
+
+4.In BLHeliSuite, click "Select ATMEL/SILABS Interface" drop down, and select "SILABS BLHeli Bootloader (cleanflight)" or the yellow "E". 
+
+![My Image](documentation_images/BLHeliSuite_select.png)
+
+5. 
+
+
+
 
 ### Raspberry Pi
 #### Raspbian Image Flasher
