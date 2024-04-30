@@ -69,6 +69,8 @@ In addition to motors, a XT30 connector is soldered onto power connections of ES
 
 ## 3. Firmware
 ### Flight Controller - ArduPilot/Kakute H7
+For our flight controller, we decided to use ArduCopter firmware. Exact version is included in Firmware folder. 
+Or you can download latest version here: https://firmware.ardupilot.org/Copter/
 #### STM32Cube Programmer and ArduCopter ISO
 #### Mission Planner
 ### ESC
