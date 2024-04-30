@@ -116,6 +116,8 @@ Our esc comes with blheli_s, meaning we will use BLHeliSuite to configure esc se
 
 ![My Image](documentation_images/BLHeliSuite_connect_read.png)
 
+Now you should be connected to ESC settings, and have the ability to switch motor directions of motors, as well as ajust other settings. 
+
 
 
 
