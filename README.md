@@ -76,7 +76,7 @@ Installation guide follows general ArduCopter installation available here: https
 
 In Short the steps are: 
 
-1.Download ArduCopter.iso (from repo, or latest from: https://firmware.ardupilot.org/Copter/)
+1.Download arducopter_with_bl.hex (from repo, or latest from: https://firmware.ardupilot.org/Copter/), we want "with_bl" because your esc is using running BLHeli_s...
 
 2.Download and Install STM32CUBEProgrammer software: https://www.st.com/en/development-tools/stm32cubeprog.html
 
@@ -91,6 +91,12 @@ In Short the steps are:
 Then device information should display at bottom of USB configuration window.
 
 ![My Image](documentation_images/STM32Cube_fc_connection_data.png)
+
+5.Now click the "open file" tab, and select the previously downloaded "arducopter_with_bl.hex"
+
+![My Image](documentation_images/STM32Cube_download.png)
+
+After this arducopter will install on flight controller and you can disconnect when you are done...
 
 ### Electronic Speed Controller (ESC)
 #### BLHeliSuite
