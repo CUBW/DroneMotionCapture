@@ -72,9 +72,22 @@ In addition to motors, a XT30 connector is soldered onto power connections of ES
 For our flight controller, we decided to use ArduCopter firmware. Exact version is included in Firmware folder. 
 Or you can download latest version here: https://firmware.ardupilot.org/Copter/
 #### STM32Cube Programmer and ArduCopter ISO
-#### Mission Planner
-### ESC
-#### BLHeli Suite
+Installation guide follows general ArduCopter installation available here: https://ardupilot.org/copter/docs/common-loading-firmware-onto-chibios-only-boards.html
+
+In Short the steps are: 
+
+1.Download ArduCopter.iso
+
+2.Download and Install STM32CUBEProgrammer software: https://www.st.com/en/development-tools/stm32cubeprog.html
+
+3. While holding down Kakute H7 mini's DFU button, connect to PC via USB
+
+![My Image](documentation_images/kakuteH7miniDFU.jpg)
+
+
+
+
+
 ### Raspberry Pi
 #### Raspbian Image Flasher
 #### MAVProxy
