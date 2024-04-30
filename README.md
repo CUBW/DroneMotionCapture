@@ -82,7 +82,7 @@ In Short the steps are:
 
 3. While holding down Kakute H7 mini's DFU button, connect to PC via USB
 
-![My Image](documentation_images/kakuteH7miniDFU.jpg)
+![My Image](documentation_images/kakuteH7miniDFU.png)
 
 
 
