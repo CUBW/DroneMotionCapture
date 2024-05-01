@@ -15,8 +15,8 @@
    - [FC Config](#fc-config)
 
 ## 1. System Overview
-<img src="documentation_images/blue_drone.jpg" width="500" height="300" alt="My Image">
-<img src="documentation_images/pink_drone.jpeg" width="500" height="300" alt="My Image">
+<img src="documentation_images/blue_drone.jpg" width="500" height="350" alt="My Image">
+<img src="documentation_images/pink_drone.jpeg" width="500" height="350" alt="My Image">
 <img src="documentation_images/drone_overview.jpeg" width="500" height="300" alt="My Image">
 
 ## 2. Basic Build and eCalc Statistics
