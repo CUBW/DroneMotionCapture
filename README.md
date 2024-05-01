@@ -15,7 +15,9 @@
    - [FC Config](#fc-config)
 
 ## 1. System Overview
-
+<img src="documentation_images/blue-drone" width="500" height="300" alt="My Image">
+<img src="documentation_images/pink_drone" width="500" height="300" alt="My Image">
+<img src="documentation_images/drone_overview" width="500" height="300" alt="My Image">
 
 ## 2. Basic Build and eCalc Statistics
 To confirm the performance of our proposed custom drone build, we use Ecalc Software. Ecalc takes in information about your custom drone, and predicts metrics such as Thrust:Weight and flight time
