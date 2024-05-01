@@ -25,7 +25,7 @@ Controlled Environment - We wanted the system be simple, but also very accurate,
 Computer Based Control - Lastly wanted control of system to be encapsulated in easy to use code library, allowing begginner proggrammers to use the system without low level knowlegde of communication or flight control. 
 
 Ultimately, with these contraints in mind, we decided to create a Motion Capture Drone system. 
-<img src="documentation_images/drone_overview.jpeg" width="500" height="300" alt="My Image">
+<img src="documentation_images/drone_overview.jpeg" width="750" height="450" alt="My Image">
 
 This system is comprised of three main components:
 
