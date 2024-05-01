@@ -93,7 +93,7 @@ In Short the steps are:
 
 Then device information should display at bottom of USB configuration window.
 
-<img src="documentation_images/STM32Cube_fc_connection_data.png" width="200" height="250" alt="My Image">
+<img src="documentation_images/STM32Cube_fc_connection_data.png" width="200" height="150" alt="My Image">
 
 5.Now click the "open file" tab, and select the previously downloaded "arducopter_with_bl.hex"
 
