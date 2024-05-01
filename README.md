@@ -57,7 +57,7 @@ For Wiring FPV Camera, our model has it's own antenna, so we only need 5v and GN
 ### Raspberry Pi
 Additionally, we added a button to the raspberry pi in order to properly turn off pi (Pi must be turned off before battery is unplugged, otherwise pi does not shut down correctly). 
 
-![My Image](documentation_images/pi_draw.jpg)
+<img src="documentation_images/pi_draw.jpg" width="335" height="400" alt="My Image">
 
 ### Electronic Speed Controller (ESC)
 Flight controller comes with 6 pin JST connector, but our ESC has a different pin mapping, so the connector has been repinned as such:
