@@ -85,7 +85,7 @@ In Short the steps are:
 
 3.While holding down Kakute H7 mini's DFU button, connect to PC via USB
 
-![My Image](documentation_images/kakuteH7miniDFU.png)
+<img src="documentation_images/kakuteH7miniDFU.png" width="250" height="250" alt="My Image">
 
 4."USB Configuration" hit the refresh button, the port should change from "No DFU detected" to "USB#" # being any number. Hit connect.
 
