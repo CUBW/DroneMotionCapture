@@ -1,19 +1,23 @@
 # Table of Contents
 
-1. [Basic Build and eCalc Statistics](#1-basic-build-and-ecalc-statistics)
-2. [Physical Assembly](#2-physical-assembly)
+1. [System Overview](#1-system-overview)
+2. [Basic Build and eCalc Statistics](#2-basic-build-and-ecalc-statistics)
+3. [Physical Assembly](#3-physical-assembly)
    - [Flight Controller](#flight-controller)
    - [ESC](#electronic-speed-controller-esc)
    - [Raspberry Pi](#raspberry-pi)
-3. [Firmware](#3-firmware)
+4. [Firmware](#4-firmware)
    - [Flight Controller - ArduPilot/Kakute H7](#flight-controller---ardupilotkakute-h7)
    - [ESC](#electronic-speed-controller-esc-1)
    - [Raspberry Pi](#raspberry-pi-1)
-4. [Initial Setup](#4-initial-setup)
+5. [Initial Setup](#5-initial-setup)
    - [Raspberry Pi Antenna Setup](#raspberry-pi-antenna-setup)
    - [FC Config](#fc-config)
 
-## 1. Basic Build and eCalc Statistics
+## 1. System Overview
+
+
+## 2. Basic Build and eCalc Statistics
 To confirm the performance of our proposed custom drone build, we use Ecalc Software. Ecalc takes in information about your custom drone, and predicts metrics such as Thrust:Weight and flight time
 
 Basic Drone parts include, Frame, ESC, Motors, Props, and Batteries. Ecalc will also take into account the power draw of any drone components like Flight controller, FPV camera, and antenna. 
@@ -38,7 +42,7 @@ Flight time and Specific Thrust can be in Yellow or Red. Since we are going for 
 
 With this ecalc calculation we can confirm our drone will operate correctly with this combination of parts. 
 
-## 2. Physical Assembly
+## 3. Physical Assembly
 ### Flight Controller
 
 For our flight controller we are using  Kakute h7 mini 1.3s. Compatible with Ardupilot Firmware. 
@@ -70,7 +74,7 @@ In addition to motors, a XT30 connector is soldered onto power connections of ES
 
 <img src="documentation_images/esc_and_motors.jpg" width="350" height="300" alt="My Image">
 
-## 3. Firmware
+## 4. Firmware
 ### Flight Controller - ArduPilot/Kakute H7
 For our flight controller, we decided to use ArduCopter firmware. Exact version is included in Firmware folder. 
 Or you can download latest version here: https://firmware.ardupilot.org/Copter/
@@ -134,7 +138,7 @@ Now you should be connected to ESC settings, and have the ability to switch moto
 #### Raspbian Image Flasher
 #### MAVProxy
 
-## 4. Initial Setup
+## 5. Initial Setup
 ### Raspberry Pi Antenna Setup
 #### Flight Controller Settings
 #### Raspberry Pi Settings
