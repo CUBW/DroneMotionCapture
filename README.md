@@ -68,7 +68,7 @@ ESC motor connections in general do not matter, motor will be able to move no ma
 
 In addition to motors, a XT30 connector is soldered onto power connections of ESC this connects direclty to 1100mah 2s High Voltage Lipo Battery. 
 
-<img src="documentation_images/esc_and_motors.jpg" width="500" height="300" alt="My Image">
+<img src="documentation_images/esc_and_motors.jpg" width="650" height="300" alt="My Image">
 
 ## 3. Firmware
 ### Flight Controller - ArduPilot/Kakute H7
