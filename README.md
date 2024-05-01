@@ -47,7 +47,7 @@ For our flight controller we are using  Kakute h7 mini 1.3s. Compatible with Ard
 
 For wiring with PI, we are using Pi only as antenna, so we much make four connections, 5v, Ground, Tx (transmit pin), and Rx (recieve pin). 
 
-<img src="documentation_images/fc_and_pi.jpg" width="200" height="500" alt="My Image">
+<img src="documentation_images/fc_and_pi.jpg" width="200" height="400" alt="My Image">
 
 For Wiring FPV Camera, our model has it's own antenna, so we only need 5v and GND
 
