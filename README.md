@@ -93,11 +93,12 @@ In Short the steps are:
 
 Then device information should display at bottom of USB configuration window.
 
-![My Image](documentation_images/STM32Cube_fc_connection_data.png)
+<img src="documentation_images/STM32Cube_fc_connection_data.png" width="300" height="450" alt="My Image">
 
 5.Now click the "open file" tab, and select the previously downloaded "arducopter_with_bl.hex"
 
-![My Image](documentation_images/STM32Cube_download.png)
+<img src="documentation_images/STM32Cube_open_file.png" width="400" height="250" alt="My Image">
+<img src="documentation_images/STM32Cube_download.png" width="400" height="250" alt="My Image">
 
 After this arducopter will install on flight controller and you can disconnect when you are done...
 
