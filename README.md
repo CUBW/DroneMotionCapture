@@ -19,7 +19,7 @@ To confirm the performance of our proposed custom drone build, we use Ecalc Soft
 Basic Drone parts include, Frame, ESC, Motors, Props, and Batteries. Ecalc will also take into account the power draw of any drone components like Flight controller, FPV camera, and antenna. 
 To begin we will make an Excel file with all of proposed parts, with summed weights, and power draws (not including motors)...
 
-![My Image](documentation_images/Final_robotics_drone_excel.png)
+<img src="documentation_images/Final_robotics_drone_excel.png" width="500" height="300" alt="My Image">
 
 Note the totaled weights and power draw. Power draw does NOT include motors. 
 
