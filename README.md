@@ -41,7 +41,7 @@ This system leverages the existing functionality of ArduCopter Firmware, and Mav
 <img src="documentation_images/pink_drone.jpeg" width="500" height="350" alt="My Image">
 
 ## 2. Basic Build and eCalc Statistics
-To confirm the performance of our proposed custom drone build, we use Ecalc Software. Ecalc takes in information about your custom drone, and predicts metrics such as Thrust:Weight and flight time
+First we need to build our drones! To confirm the performance of our proposed custom drone build, we use Ecalc Software. Ecalc takes in information about your custom drone, and predicts metrics such as Thrust:Weight and flight time
 
 Basic Drone parts include, Frame, ESC, Motors, Props, and Batteries. Ecalc will also take into account the power draw of any drone components like Flight controller, FPV camera, and antenna. 
 To begin we will make an Excel file with all of proposed parts, with summed weights, and power draws (not including motors)...
