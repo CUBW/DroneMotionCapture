@@ -62,7 +62,7 @@ Additionally, we added a button to the raspberry pi in order to properly turn of
 ### Electronic Speed Controller (ESC)
 Flight controller comes with 6 pin JST connector, but our ESC has a different pin mapping, so the connector has been repinned as such:
 
-![My Image](documentation_images/pi_draw_andFC.jpg)
+<img src="documentation_images/pi_draw_andFC.jpg" width="500" height="300" alt="My Image">
 
 ESC motor connections in general do not matter, motor will be able to move no matter how the three pins are connected to ESC. The only difference it makes is the direction the motor spins, which you are able to switch in ESC firmware if desired. However for ease of use, we decided to use pin connectors between motor and esc for easy direction swapping...
 
