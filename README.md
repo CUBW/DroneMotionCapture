@@ -152,7 +152,7 @@ Our esc comes with blheli_s, meaning we will use BLHeliSuite to configure esc se
 
 Now you should be connected to ESC settings, and have the ability to modify ESC settings per motor. You can modify a single motor or muiltiple at same time by selecting motor numbers:
 
-<img src="documentation_images/BLHeliSuite_motor_nums.png" width="400" height="200" alt="My Image">
+<img src="documentation_images/BLHeliSuite_motor_nums.png" width="400" height="100" alt="My Image">
 
 Then you can reversed motor direction for selected motors:
 
