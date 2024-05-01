@@ -27,6 +27,7 @@ Next step is to input this information into Ecalc ...
 
 ![My Image](documentation_images/ecalc_performance_stats_robotics_drone.png)
 
+
 Note we are using "Including Drive" as our weight option. This is because we have chosen all parts and know the actual weight. The other options beside "include drive" will asume your total weight doesn't include particular components and try to add those weights for you. In this case we can ignore the warning related to total weight, because the estimated weight that ecalc thinks this build should weigh is more than our actual parts. But since we went to the trouble of finding the actual total weight of our drone, we can ignore this. 
 
 Take aways:
@@ -51,7 +52,7 @@ For wiring with PI, we are using Pi only as antenna, so we much make four connec
 
 For Wiring FPV Camera, our model has it's own antenna, so we only need 5v and GND
 
-![My Image](documentation_images/fc_and_cam.jpg)
+<img src="documentation_images/fc_and_cam.jpg" width="300" height="400" alt="My Image">
 
 ### Raspberry Pi
 Additionally, we added a button to the raspberry pi in order to properly turn off pi (Pi must be turned off before battery is unplugged, otherwise pi does not shut down correctly). 
