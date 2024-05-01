@@ -17,6 +17,7 @@
 ## 1. System Overview
 This system was created to create a foundation for more advanced Computer Science and Mechanical Engineering projects.
 Goals for this project were:
+
 Presise Control - We have a very small indoor flight space so presicsion/safety was important
 
 Controlled Environment - We wanted the system be simple, but also very accurate, in order for users to be confident there is very little noise or inconsitancey in the system.
