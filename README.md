@@ -15,9 +15,20 @@
    - [FC Config](#fc-config)
 
 ## 1. System Overview
+This system was created to create a foundation for more advanced Computer Science and Mechanical Engineering projects.
+Goals for this project were:
+Presise Control - We have a very small indoor flight space so presicsion/safety was important
+
+Controlled Environment - We wanted the system be simple, but also very accurate, in order for users to be confident there is very little noise or inconsitancey in the system.
+
+Computer Based Control - Lastly wanted control of system to be encapsulated in easy to use code library, allowing begginner proggrammers to use the system without low level knowlegde of communication or flight control. 
+
+<img src="documentation_images/drone_overview.jpeg" width="500" height="300" alt="My Image">
+
+This system was created to create a foundation for more advanced Computer Science and Mechanical Engineering projects. 
+
 <img src="documentation_images/blue_drone.jpg" width="500" height="350" alt="My Image">
 <img src="documentation_images/pink_drone.jpeg" width="500" height="350" alt="My Image">
-<img src="documentation_images/drone_overview.jpeg" width="500" height="300" alt="My Image">
 
 ## 2. Basic Build and eCalc Statistics
 To confirm the performance of our proposed custom drone build, we use Ecalc Software. Ecalc takes in information about your custom drone, and predicts metrics such as Thrust:Weight and flight time
