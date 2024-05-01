@@ -42,7 +42,8 @@ With this ecalc calculation we can confirm our drone will operate correctly with
 
 For our flight controller we are using  Kakute h7 mini 1.3s. Compatible with Ardupilot Firmware. 
 
-![My Image](documentation_images/kakute_h7_pic.png)
+<img src="documentation_images/kakute_h7_pic.png" width="300" height="200" alt="My Image">
+
 
 For wiring with PI, we are using Pi only as antenna, so we much make four connections, 5v, Ground, Tx (transmit pin), and Rx (recieve pin). 
 
