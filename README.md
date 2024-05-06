@@ -167,7 +167,7 @@ Or follow the simplified steps below.
 1. Download and Install Rasbien Pi Imager: https://www.raspberrypi.com/software/
 2. Start application, and plug in SD Card that Pi OS will be flashed on.
 3. Click "Choose Device"
-<img src="documentation_images/thumbnail_Rasbien.png" width="600" height="300" alt="My Image">
+<img src="documentation_images/thumbnail_Rasbien.png" width="600" height="400" alt="My Image">
 
 
 
