@@ -172,7 +172,7 @@ Or follow the simplified steps below.
 
 4.Choose the Pi we are using, in this case Rasberry Pi Zero 2 W
 
-<img src="documentation_images/thumbnail_Rasbien_choose_os.png" width="600" height="400" alt="My Image
+<img src="documentation_images/thumbnail_Rasbien_choose_os.png" width="600" height="400" alt="My Image">
    
 5.For the OS, since we have now need for Desktop GUI, we are opting to use "PI OS Lite" (no desktop env). To do this hit "Choose OS"
 
