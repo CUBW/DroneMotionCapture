@@ -158,14 +158,22 @@ Then you can reversed motor direction for selected motors:
 
 <img src="documentation_images/BLHeliSuite_reverse_dir.png" width="600" height="300" alt="My Image">
 
-
-
-
-
-
 ### Raspberry Pi
+We are using Raspberry Pi Zero 2 W, so we need to flash a Pi OS on an SD card. You can follow official documentation here: https://www.raspberrypi.com/documentation/computers/getting-started.html
+
+Or follow the simplified steps below. 
 #### Raspbian Image Flasher
-#### MAVProxy
+
+1. Download and Install Rasbien Pi Imager: https://www.raspberrypi.com/software/
+2. Start application, and plug in SD Card that Pi OS will be flashed on.
+3. Click "Choose Device"
+<img src="documentation_images/thumbnail_Rasbien.png" width="600" height="300" alt="My Image">
+
+
+
+
+
+
 
 ## 5. Initial Setup
 ### Raspberry Pi Antenna Setup
