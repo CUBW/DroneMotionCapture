@@ -168,6 +168,8 @@ Or follow the simplified steps below.
 2. Start application, and plug in SD Card that Pi OS will be flashed on.
 3. Click "Choose Device"
 <img src="documentation_images/thumbnail_Rasbien.png" width="600" height="400" alt="My Image">
+4. Choose the Pi we are using, in this case Rasberry Pi Zero 2 W
+<img src="documentation_images/thumbnail_Rasbien_choose_os.png" width="600" height="400" alt="My Image">
 
 
 
