@@ -164,12 +164,19 @@ We are using Raspberry Pi Zero 2 W, so we need to flash a Pi OS on an SD card. Y
 Or follow the simplified steps below. 
 #### Raspbian Image Flasher
 
-1. Download and Install Rasbien Pi Imager: https://www.raspberrypi.com/software/
-2. Start application, and plug in SD Card that Pi OS will be flashed on.
-3. Click "Choose Device"
+1.Download and Install Rasbien Pi Imager: https://www.raspberrypi.com/software/
+2.Start application, and plug in SD Card that Pi OS will be flashed on.
+3.Click "Choose Device"
 <img src="documentation_images/thumbnail_Rasbien.png" width="600" height="400" alt="My Image">
-4. Choose the Pi we are using, in this case Rasberry Pi Zero 2 W
+4.Choose the Pi we are using, in this case Rasberry Pi Zero 2 W
 <img src="documentation_images/thumbnail_Rasbien_choose_os.png" width="600" height="400" alt="My Image">
+5.For the OS, since we have now need for Desktop GUI, we are opting to use "PI OS Lite" (no desktop env). To do this hit "Choose OS"
+<img src="documentation_images/thumbnail_Rasbien_choose_os_b.png" width="600" height="400" alt="My Image">
+6.Select "Other" options
+<img src="documentation_images/thumbnail_Rasbien_choose_os_extra.png" width="600" height="400" alt="My Image">
+7.Select "PI OS Lite (64 bit) 
+<img src="documentation_images/thumbnail_Rasbien_lite.png" width="600" height="400" alt="My Image">
+
 
 
 
