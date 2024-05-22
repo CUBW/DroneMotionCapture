@@ -271,6 +271,24 @@ If you've done everything correctly you should be SSH'd into PI, and able operat
 
 ### Pi UART Setup
 
+1. Now that you are ssh'd into pi, we need to open up UART pin to allow for mavlink communication to take place. In rasberry pi cmd line, type "sudo raspi-config"
+
+2. You should open the raspberry pi's configuration menu, from here select "Interfacing Options"
+
+<img src="documentation_images/RaspberryPi_config.png" width="680" height="400" alt="My Image">
+
+3.. Now select "P6 Serial"
+
+<img src="documentation_images/RaspberryPI_p6.png" width="680" height="400" alt="My Image">
+
+4. When prompted, select no to “Would you like a login shell to be accessible over serial?”.
+
+5. When prompted, select yes to “Would you like the serial port hardware to be enabled?”.
+
+6. Reboot the Raspberry Pi when you are done.
+
+The Raspberry Pi’s serial port will now be usable on /dev/serial0.
+
 ### Pi MAVProxy Relay
 
 ### Pi Connection Example
