@@ -212,13 +212,23 @@ First we must change some parameters on our Ardupilot Firmware, if you haven't a
 
 We will be ajusting settings using Mission Planner ground control software built for ardupilot, this guide assumes basic knowlege of mission planner, and how to change paremeters. 
 
-If you haven't used mission planner before it's strongly recommned to skim through the Overview: https://ardupilot.org/dev/docs/raspberry-pi-via-mavlink.html
+If you haven't used mission planner before it's strongly recommned to skim through the documentation, here are some useful links: 
 
+Overview: https://ardupilot.org/dev/docs/raspberry-pi-via-mavlink.html
 Installation steps: https://ardupilot.org/planner/docs/mission-planner-installation.html
+Basics of Connecting: https://ardupilot.org/planner/docs/common-connect-mission-planner-autopilot.html
 
-Basics of Connecting to Drones with Mission Planner: https://ardupilot.org/planner/docs/common-connect-mission-planner-autopilot.html
+1. Connect FC directly to PC via USB C, then connect to FC with Mission Planner.
 
+2. Select "Config" Tab, then "Full Parameter List"
 
+3. Change Serial2_protocal to 2 or mavlink 2. "Serial2" in our case are the RX and TX pins on our Kakute H7 mini Flight controller, we are telling the firmware to expect "Mavlink 2" communication protocal on those pins.
+
+4. Set Serial2_baud to 57600 (Note offical documentation recommends 921600, in our case we got the system working useing 57600)
+
+5. Save Params and disconnect.
+
+Flight contoller is ready to recieve and trasnmit mavlink messages on RX and TX pins that Pi is connectd to. 
 #### Raspberry Pi Settings
 #### MAVProxy Relay
 ### Flight Controller Configuration
