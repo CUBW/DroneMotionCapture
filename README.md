@@ -215,7 +215,9 @@ We will be ajusting settings using Mission Planner ground control software built
 If you haven't used mission planner before it's strongly recommned to skim through the documentation, here are some useful links: 
 
 Overview: https://ardupilot.org/dev/docs/raspberry-pi-via-mavlink.html
+
 Installation steps: https://ardupilot.org/planner/docs/mission-planner-installation.html
+
 Basics of Connecting: https://ardupilot.org/planner/docs/common-connect-mission-planner-autopilot.html
 
 1. Connect FC directly to PC via USB C, then connect to FC with Mission Planner.
