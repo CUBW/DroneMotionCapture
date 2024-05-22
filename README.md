@@ -226,19 +226,19 @@ Basics of Connecting: https://ardupilot.org/planner/docs/common-connect-mission-
 
 2.Select "Config" Tab, then "Full Parameter List"
 
-<img src="documentation_images/MP_config.png" width="400" height="100" alt="My Image">
+<img src="documentation_images/mp_config.png" width="400" height="100" alt="My Image">
 
 3.Change Serial2_protocal to 2 or mavlink 2. "Serial2" in our case are the RX and TX pins on our Kakute H7 mini Flight controller, we are telling the firmware to expect "Mavlink 2" communication protocal on those pins. 
 
-<img src="documentation_images/param_proto.png" width="600" height="150" alt="My Image">
+<img src="documentation_images/param_proto.png" width="600" height="75" alt="My Image">
 
 4.Set Serial2_baud to 57600 (Note offical documentation recommends 921600, in our case we got the system working useing 57600)
 
-<img src="documentation_images/param_baud.png" width="600" height="150" alt="My Image">
+<img src="documentation_images/param_baud.png" width="600" height="75" alt="My Image">
 
 5.Save Params and disconnect.
 
-<img src="documentation_images/mp_search_and_other.png" width="600" height="150" alt="My Image">
+<img src="documentation_images/mp_search_and_other.png" width="250" height="500" alt="My Image">
 
 Flight contoller is ready to recieve and trasnmit mavlink messages on RX and TX pins that Pi is connectd to. 
 #### Raspberry Pi Settings
