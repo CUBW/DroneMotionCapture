@@ -186,9 +186,14 @@ Or follow the simplified steps below.
 
 <img src="documentation_images/thumbnail_Rasbien_lite.png" width="300" height="200" alt="My Image
 
-8.Now we must edit advanced settings, so Pi will automatically connect to a wifi network of our choosing. This is needed because we will be directly SSH into Pi.
+8.Now we must edit advanced settings, so Pi will automatically connect to a wifi network of our choosing. This is needed because we will be directly SSH into Pi. Select "Next" then seleect "edit settings". OR just click CTR + SHIFT + X on windows and linux.
 
 <img src="documentation_images/thumbnail_Rasbien_use_options.png" width="300" height="200" alt="My Image">
+
+9 
+
+<img src="documentation_images/thumbnail_Rasbien_advanced_gen.png" width="300" height="200" alt="My Image">
+
 
 
 
