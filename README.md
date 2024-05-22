@@ -138,7 +138,7 @@ Our esc comes with blheli_s, meaning we will use BLHeliSuite to configure esc se
 #### BLHeliSuite
 1. Download and Launch BLHeliSuite, available here: https://www.mediafire.com/folder/dx6kfaasyo24l/BLHeliSuite
 
-2. Power Flight controller and Esc via battery (FC and ESC are connected via the modified 8-pin JST connector referened in hardware setup for FC). 
+2. Power Flight controller and Esc via battery (FC and ESC are connected via the modified 8-pin JST connector referenced in hardware setup for FC). 
 
 3. Once stack is powered by battery, plug flight controller into computer via USB.
 
@@ -186,11 +186,11 @@ Or follow the simplified steps below.
 
 <img src="documentation_images/thumbnail_Rasbien_lite.png" width="300" height="200" alt="My Image">
 
-8. Now we must edit advanced settings, so Pi will automatically connect to a wifi network of our choosing. This is needed because we will be directly SSH into Pi. Select "Next" then seleect "edit settings". OR just click CTR + SHIFT + X on windows and linux. (You will want to remember the username and password you set in "Set Username and Password" section)
+8. Now we must edit advanced settings, so Pi will automatically connect to a wifi network of our choosing. This is needed because we will be directly SSH into Pi. Select "Next" then seleect "edit settings". OR just click CTR + SHIFT + X on windows and linux. 
 
 <img src="documentation_images/thumbnail_Rasbien_use_options.png" width="300" height="200" alt="My Image">
 
-9. Fill in all General settings. Hostname, Usernane, and Password will define how pi appears on local network and how to log into it. Configuration of wireless LAN is where you should put your network information (In our case the name and password to our wireless network). 
+9. Fill in all General settings. Hostname, Usernane, and Password will define how pi appears on local network and how to log into it (You will want to remember the username and password you set in "Set Username and Password" section). Configuration of wireless LAN is where you should put your network information (In our case the name and password to our wireless network). 
 
 <img src="documentation_images/thumbnail_Rasbien_advanced_gen.png" width="400" height="525" alt="My Image">
 
