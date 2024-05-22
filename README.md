@@ -12,6 +12,8 @@
    - [Raspberry Pi](#raspberry-pi-1)
 5. [Initial Setup](#5-initial-setup)
    - [Raspberry Pi Antenna Setup](#raspberry-pi-antenna-setup)
+   - [Pi ssh setup](#pi-ssh-setup)
+   - [Pi UART setup](#pi-uart-setup)
    - [FC Config](#fc-config)
 
 ## 1. System Overview
@@ -207,7 +209,7 @@ Or follow the simplified steps below.
 ### Raspberry Pi Antenna Setup
 The setup of Mavlink communication (Drone control) from ground computer through raspberry pi to flight controller follows the basic steps laid out in this guide: https://ardupilot.org/dev/docs/raspberry-pi-via-mavlink.html
 Simplified steps for our use case are below...
-#### Flight Controller Settings
+#### Flight Controller Params
 First we must change some parameters on our Ardupilot Firmware, if you haven't arealdy installed the ardupilot firmware refer to Flight Controller in "Firmware" Section of documentation. 
 
 We will be ajusting settings using Mission Planner ground control software built for ardupilot, this guide assumes basic knowlege of mission planner, and how to change paremeters. 
@@ -242,7 +244,7 @@ Basics of Connecting: https://ardupilot.org/planner/docs/common-connect-mission-
 
 Flight contoller is ready to recieve and trasnmit mavlink messages on RX and TX pins that Pi is connectd to.
 
-#### Raspberry Pi Settings
+#### Pi ssh setup
 To configure Raspberry Pi we opted to SSH into Pi's command line over network. Since during the Pi's OS flasing, we uploaded the settings for Pi to connect automatically to our wifi network. We simply need to find the assigned IP address our local network has given our PI.
 
 1. Locate your routers "Dynamic Host Configuration Protocal Client Table" or "DHCP Cliets List" (This step may vary depending on router and firewall settings on wifi network...) In our case the IP address asigned to our drone is XXX.XXX.X.101, (Note I've put X placeholder in for security, the IP address will be all numbers). Also keep note of our Ground Control Computer in this case "Jayden's Laptop" with IP of XXX.XXX.X.106. 
@@ -266,14 +268,10 @@ If you've done everything correctly you should be SSH'd into PI, and able operat
 
 <img src="documentation_images/rasberry_cmd_line.png" width="400" height="20" alt="My Image">
 
+#### Pi UART Setup
 
+#### Pi MAVProxy Relay
 
-
-
-
-
-
-#### MAVProxy Relay
 ### Flight Controller Configuration
 #### Motor, Frame, Propeller, and Battery
 #### Failsafes and Warnings
