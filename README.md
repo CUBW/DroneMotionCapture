@@ -205,6 +205,8 @@ Or follow the simplified steps below.
 
 ## 5. Initial Setup
 ### Raspberry Pi Antenna Setup
+The setup of Mavlink communication (Drone control) from ground computer through raspberry pi to flight controller follows the basic steps laid out in this guide: https://ardupilot.org/dev/docs/raspberry-pi-via-mavlink.html
+Simplified steps for our use case are below...
 #### Flight Controller Settings
 #### Raspberry Pi Settings
 #### MAVProxy Relay
