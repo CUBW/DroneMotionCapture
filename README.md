@@ -200,7 +200,7 @@ Or follow the simplified steps below.
 
 11. Lastly save all edited settings, (You don't need to change antything in "Options" Tab). Then confirm flashing of SD Card, then Wait for Rasbien to flash OS. SD Card should be good to plug into Pi once done!
 
-<img src="documentation_images/thumbnail_Rasbien_confirm.png" width="400" height="500" alt="My Image">
+<img src="documentation_images/thumbnail_Rasbien_confirm.png" width="600" height="400" alt="My Image">
 
 
 ## 5. Initial Setup
