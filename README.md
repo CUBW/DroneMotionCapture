@@ -279,7 +279,7 @@ If you've done everything correctly you should be SSH'd into PI, and able operat
 
 3.. Now select "P6 Serial"
 
-<img src="documentation_images/RaspberryPI_p6.png" width="680" height="400" alt="My Image">
+<img src="documentation_images/RaspberryPi_p6.png" width="680" height="400" alt="My Image">
 
 4. When prompted, select no to “Would you like a login shell to be accessible over serial?”.
 
