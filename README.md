@@ -10,11 +10,13 @@
    - [Flight Controller - ArduPilot/Kakute H7](#flight-controller---ardupilotkakute-h7)
    - [ESC](#electronic-speed-controller-esc-1)
    - [Raspberry Pi](#raspberry-pi-1)
-5. [Initial Setup](#5-initial-setup)
-   - [Raspberry Pi Antenna Setup](#raspberry-pi-antenna-setup)
+5. [Raspberry Pi Antenna Setup](#5-raspberry-pi-antenna-setup)
    - [Pi ssh setup](#pi-ssh-setup)
    - [Pi UART setup](#pi-uart-setup)
-   - [FC Config](#fc-config)
+   - [Pi Connection Example](#pi-connection-example)
+   - [Pi button setup](#pi-button-setup)
+6. [Calibration/Tuning](#6-calibration/tuning)
+   - []
 
 ## 1. System Overview
 This system was created to create a foundation for more advanced Computer Science and Mechanical Engineering projects.
@@ -205,11 +207,10 @@ Or follow the simplified steps below.
 <img src="documentation_images/thumbnail_Rasbien_confirm.png" width="300" height="200" alt="My Image">
 
 
-## 5. Initial Setup
-### Raspberry Pi Antenna Setup
+## 5. Raspberry Pi Antenna Setup
 The setup of Mavlink communication (Drone control) from ground computer through raspberry pi to flight controller follows the basic steps laid out in this guide: https://ardupilot.org/dev/docs/raspberry-pi-via-mavlink.html
 Simplified steps for our use case are below...
-#### Flight Controller Params
+### Flight Controller Params
 First we must change some parameters on our Ardupilot Firmware, if you haven't arealdy installed the ardupilot firmware refer to Flight Controller in "Firmware" Section of documentation. 
 
 We will be ajusting settings using Mission Planner ground control software built for ardupilot, this guide assumes basic knowlege of mission planner, and how to change paremeters. 
@@ -244,7 +245,7 @@ Basics of Connecting: https://ardupilot.org/planner/docs/common-connect-mission-
 
 Flight contoller is ready to recieve and trasnmit mavlink messages on RX and TX pins that Pi is connectd to.
 
-#### Pi ssh setup
+### Pi ssh setup
 To configure Raspberry Pi we opted to SSH into Pi's command line over network. Since during the Pi's OS flasing, we uploaded the settings for Pi to connect automatically to our wifi network. We simply need to find the assigned IP address our local network has given our PI.
 
 1. Locate your routers "Dynamic Host Configuration Protocal Client Table" or "DHCP Cliets List" (This step may vary depending on router and firewall settings on wifi network...) In our case the IP address asigned to our drone is XXX.XXX.X.101, (Note I've put X placeholder in for security, the IP address will be all numbers). Also keep note of our Ground Control Computer in this case "Jayden's Laptop" with IP of XXX.XXX.X.106. 
@@ -268,13 +269,17 @@ If you've done everything correctly you should be SSH'd into PI, and able operat
 
 <img src="documentation_images/rasberry_cmd_line.png" width="400" height="20" alt="My Image">
 
-#### Pi UART Setup
+### Pi UART Setup
 
-#### Pi MAVProxy Relay
+### Pi MAVProxy Relay
 
-### Flight Controller Configuration
-#### Motor, Frame, Propeller, and Battery
-#### Failsafes and Warnings
-#### Calibration
+### Pi Connection Example
+
+### Pi Button Setup
+
+## Flight Controller Configuration
+### Motor, Frame, Propeller, and Battery
+### Failsafes and Warnings
+### Calibration
 
 
