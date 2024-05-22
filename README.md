@@ -251,9 +251,13 @@ In our case the IP address asigned to our drone is XXX.XXX.X.101, (Note I've put
 
 <img src="documentation_images/DHCP_clients.png" width="400" height="60" alt="My Image">
 
-2.Open Powershell or equivilant. Type "ssh robotics@XXX.XXX.X.XXX"
+2.Open Powershell or equivilant. Type "ssh robotics@XXX.XXX.X.XXX" XXX.XXX.X.XXX being the IP of the Pi we observed earlier. 
 
-<img src="documentation_images/power_shell_shh.png" width="400" height="30" alt="My Image">
+<img src="documentation_images/power_shell_shh.png" width="400" height="20" alt="My Image">
+
+3.If connecting to Pi for first time (Or Ip has been reset for any reason), type "yes" for saving fingerprint.
+
+<img src="documentation_images/power_shell_type_yes.png" width="400" height="80" alt="My Image">
 
 
 
