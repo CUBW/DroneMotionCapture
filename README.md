@@ -190,15 +190,15 @@ Or follow the simplified steps below.
 
 <img src="documentation_images/thumbnail_Rasbien_use_options.png" width="300" height="200" alt="My Image">
 
-9. Fill in all General settings. Hostname, Usernane, and Password will define how pi appears on local network and how to log into it. Configuration of wireless LAN is where you should put your network information (In our case the name and password to our wireless network). 
+9.Fill in all General settings. Hostname, Usernane, and Password will define how pi appears on local network and how to log into it. Configuration of wireless LAN is where you should put your network information (In our case the name and password to our wireless network). 
 
 <img src="documentation_images/thumbnail_Rasbien_advanced_gen.png" width="400" height="525" alt="My Image">
 
-10. Next in the "Services" tab, make sure that SSH is enabled.
+10.Next in the "Services" tab, make sure that SSH is enabled.
 
 <img src="documentation_images/thumbnail_Rasbien_advanced_serv.png" width="350" height="200" alt="My Image">
 
-11. Lastly save all edited settings, (You don't need to change antything in "Options" Tab). Then confirm flashing of SD Card, then Wait for Rasbien to flash OS. SD Card should be good to plug into Pi once done!
+11.Lastly save all edited settings, (You don't need to change antything in "Options" Tab). Then confirm flashing of SD Card, then Wait for Rasbien to flash OS. SD Card should be good to plug into Pi once done!
 
 <img src="documentation_images/thumbnail_Rasbien_confirm.png" width="300" height="200" alt="My Image">
 
@@ -220,15 +220,15 @@ Installation steps: https://ardupilot.org/planner/docs/mission-planner-installat
 
 Basics of Connecting: https://ardupilot.org/planner/docs/common-connect-mission-planner-autopilot.html
 
-1. Connect FC directly to PC via USB C, then connect to FC with Mission Planner.
+1.Connect FC directly to PC via USB C, then connect to FC with Mission Planner.
 
-2. Select "Config" Tab, then "Full Parameter List"
+2.Select "Config" Tab, then "Full Parameter List"
 
-3. Change Serial2_protocal to 2 or mavlink 2. "Serial2" in our case are the RX and TX pins on our Kakute H7 mini Flight controller, we are telling the firmware to expect "Mavlink 2" communication protocal on those pins.
+3.Change Serial2_protocal to 2 or mavlink 2. "Serial2" in our case are the RX and TX pins on our Kakute H7 mini Flight controller, we are telling the firmware to expect "Mavlink 2" communication protocal on those pins.
 
-4. Set Serial2_baud to 57600 (Note offical documentation recommends 921600, in our case we got the system working useing 57600)
+4.Set Serial2_baud to 57600 (Note offical documentation recommends 921600, in our case we got the system working useing 57600)
 
-5. Save Params and disconnect.
+5.Save Params and disconnect.
 
 Flight contoller is ready to recieve and trasnmit mavlink messages on RX and TX pins that Pi is connectd to. 
 #### Raspberry Pi Settings
