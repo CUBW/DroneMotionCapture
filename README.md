@@ -266,7 +266,7 @@ In our case the IP address asigned to our drone is XXX.XXX.X.101, (Note I've put
 
 If you've done everything correctly you should be SSH'd into PI, and able operate PI via command line interface
 
-<img src="documentation_images/rasberry_cmd_line" width="400" height="20" alt="My Image">
+<img src="documentation_images/rasberry_cmd_line.png" width="400" height="20" alt="My Image">
 
 
 
