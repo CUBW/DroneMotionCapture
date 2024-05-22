@@ -249,7 +249,7 @@ To configure Raspberry Pi we opted to SSH into Pi's command line over network. S
 
 In our case the IP address asigned to our drone is XXX.XXX.X.101, (Note I've put X placeholder in for security, the IP address will be all numbers). Also keep note of our Ground Control Computer in this case "Jayden's Laptop" with IP of XXX.XXX.X.106. 
 
-<img src="documentation_images/DCHP_clients.png" width="400" height="60" alt="My Image">
+<img src="documentation_images/DHCP_clients.png" width="400" height="60" alt="My Image">
 
 
 
