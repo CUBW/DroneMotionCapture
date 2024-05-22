@@ -186,7 +186,7 @@ Or follow the simplified steps below.
 
 <img src="documentation_images/thumbnail_Rasbien_lite.png" width="300" height="200" alt="My Image">
 
-8.Now we must edit advanced settings, so Pi will automatically connect to a wifi network of our choosing. This is needed because we will be directly SSH into Pi. Select "Next" then seleect "edit settings". OR just click CTR + SHIFT + X on windows and linux.
+8.Now we must edit advanced settings, so Pi will automatically connect to a wifi network of our choosing. This is needed because we will be directly SSH into Pi. Select "Next" then seleect "edit settings". OR just click CTR + SHIFT + X on windows and linux. (You will want to remember the username and password you set in "Set Username and Password" section)
 
 <img src="documentation_images/thumbnail_Rasbien_use_options.png" width="300" height="200" alt="My Image">
 
@@ -255,9 +255,16 @@ In our case the IP address asigned to our drone is XXX.XXX.X.101, (Note I've put
 
 <img src="documentation_images/power_shell_shh.png" width="400" height="20" alt="My Image">
 
-3.If connecting to Pi for first time (Or Ip has been reset for any reason), type "yes" for saving fingerprint.
+3.If connecting to Pi for first time (Or Ip has been reset for any reason), type "yes" for saving device.
 
 <img src="documentation_images/power_shell_type_yes.png" width="400" height="80" alt="My Image">
+
+4.You will then be prompted to type in a password. 
+*NOTE: the username (in this case robotics) and password for PI are set when Flashing OS onto SD card, you should have them written down or saved somewhere. Refer to Section "Firmware" subsection "Rasberry PI" step #8 if you are confused...
+
+<img src="documentation_images/power_shell_save_c.png" width="400" height="20" alt="My Image">
+
+
 
 
 
