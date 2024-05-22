@@ -192,7 +192,7 @@ Or follow the simplified steps below.
 
 9. Fill in all General settings. Hostname, Usernane, and Password will define how pi appears on local network and how to log into it. Configuration of wireless LAN is where you should put your network information (In our case the name and password to our wireless network). 
 
-<img src="documentation_images/thumbnail_Rasbien_advanced_gen.png" width="400" height="600" alt="My Image">
+<img src="documentation_images/thumbnail_Rasbien_advanced_gen.png" width="400" height="525" alt="My Image">
 
 10. Next in the "Services" tab, make sure that SSH is enabled.
 
