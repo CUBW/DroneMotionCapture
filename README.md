@@ -106,15 +106,15 @@ Installation guide follows general ArduCopter installation available here: https
 
 In Short the steps are: 
 
-1.Download arducopter_with_bl.hex (from repo, or latest from: https://firmware.ardupilot.org/Copter/), we want "with_bl" because your esc is using running BLHeli_s...
+1. Download arducopter_with_bl.hex (from repo, or latest from: https://firmware.ardupilot.org/Copter/), we want "with_bl" because your esc is using running BLHeli_s...
 
-2.Download and Install STM32CUBEProgrammer software: https://www.st.com/en/development-tools/stm32cubeprog.html
+2. Download and Install STM32CUBEProgrammer software: https://www.st.com/en/development-tools/stm32cubeprog.html
 
-3.While holding down Kakute H7 mini's DFU button, connect to PC via USB
+3. While holding down Kakute H7 mini's DFU button, connect to PC via USB
 
 <img src="documentation_images/kakuteH7miniDFU.png" width="250" height="250" alt="My Image">
 
-4."USB Configuration" hit the refresh button, the port should change from "No DFU detected" to "USB#" # being any number. Hit connect.
+4. "USB Configuration" hit the refresh button, the port should change from "No DFU detected" to "USB#" # being any number. Hit connect.
 
 <img src="documentation_images/STM32Cube_connection_ex.png" width="300" height="450" alt="My Image">
 
@@ -122,11 +122,11 @@ Then device information should display at bottom of USB configuration window.
 
 <img src="documentation_images/STM32Cube_fc_connection_data.png" width="200" height="150" alt="My Image">
 
-5.Now click the "open file" tab, and select the previously downloaded "arducopter_with_bl.hex"
+5. Now click the "open file" tab, and select the previously downloaded "arducopter_with_bl.hex"
 
 <img src="documentation_images/STM32Cube_open_file.png" width="400" height="250" alt="My Image">
 
-6.Lastly, hit download...
+6. Lastly, hit download...
 
 <img src="documentation_images/STM32Cube_download.png" width="400" height="200" alt="My Image">
 
@@ -136,17 +136,17 @@ After this arducopter will install on flight controller and you can disconnect w
 Our esc comes with blheli_s, meaning we will use BLHeliSuite to configure esc settings NOT BLheliSuite32. In our setup the only purpose of using BLHeliSuite is to reverse the direction of motors, without rewiring them. You may not need to use this configuration software you don't need to swap directions without rewiring...
 
 #### BLHeliSuite
-1.Download and Launch BLHeliSuite, available here: https://www.mediafire.com/folder/dx6kfaasyo24l/BLHeliSuite
+1. Download and Launch BLHeliSuite, available here: https://www.mediafire.com/folder/dx6kfaasyo24l/BLHeliSuite
 
-2.Power Flight controller and Esc via battery (FC and ESC are connected via the modified 8-pin JST connector referened in hardware setup for FC). 
+2. Power Flight controller and Esc via battery (FC and ESC are connected via the modified 8-pin JST connector referened in hardware setup for FC). 
 
-3.Once stack is powered by battery, plug flight controller into computer via USB.
+3. Once stack is powered by battery, plug flight controller into computer via USB.
 
-4.In BLHeliSuite, click "Select ATMEL/SILABS Interface" drop down, and select "SILABS BLHeli Bootloader (cleanflight)" or the yellow "E". 
+4. In BLHeliSuite, click "Select ATMEL/SILABS Interface" drop down, and select "SILABS BLHeli Bootloader (cleanflight)" or the yellow "E". 
 
 <img src="documentation_images/BLHeliSuite_select.png" width="600" height="75" alt="My Image">
 
-5.Now, in com window, select COM port that FC is currenlty connected under, Hit "connect", then hit "read setup"
+5. Now, in com window, select COM port that FC is currenlty connected under, Hit "connect", then hit "read setup"
 
 <img src="documentation_images/BLHeliSuite_connect_read.png" width="600" height="75" alt="My Image">
 
@@ -164,41 +164,41 @@ We are using Raspberry Pi Zero 2 W, so we need to flash a Pi OS on an SD card. Y
 Or follow the simplified steps below. 
 #### Raspbian Image Flasher
 
-1.Download and Install Rasbien Pi Imager: https://www.raspberrypi.com/software/
-2.Start application, and plug in SD Card that Pi OS will be flashed on.
-3.Click "Choose Device"
+1. Download and Install Rasbien Pi Imager: https://www.raspberrypi.com/software/
+2. Start application, and plug in SD Card that Pi OS will be flashed on.
+3. Click "Choose Device"
 
 <img src="documentation_images/thumbnail_Rasbien.png" width="300" height="200" alt="My Image">
 
-4.Choose the Pi we are using, in this case Rasberry Pi Zero 2 W
+4. Choose the Pi we are using, in this case Rasberry Pi Zero 2 W
 
 <img src="documentation_images/thumbnail_Rasbien_choose_os.png" width="300" height="200" alt="My Image">
    
-5.For the OS, since we have now need for Desktop GUI, we are opting to use "PI OS Lite" (no desktop env). To do this hit "Choose OS"
+5. For the OS, since we have now need for Desktop GUI, we are opting to use "PI OS Lite" (no desktop env). To do this hit "Choose OS"
 
 <img src="documentation_images/thumbnail_Rasbien_choose_os_b.png" width="300" height="200" alt="My Image">
 
-6.Select "Other" options
+6. Select "Other" options
 
 <img src="documentation_images/thumbnail_Rasbien_choose_os_extra.png" width="300" height="200" alt="My Image">
 
-7.Select "PI OS Lite (64 bit) 
+7. Select "PI OS Lite (64 bit) 
 
 <img src="documentation_images/thumbnail_Rasbien_lite.png" width="300" height="200" alt="My Image">
 
-8.Now we must edit advanced settings, so Pi will automatically connect to a wifi network of our choosing. This is needed because we will be directly SSH into Pi. Select "Next" then seleect "edit settings". OR just click CTR + SHIFT + X on windows and linux. (You will want to remember the username and password you set in "Set Username and Password" section)
+8. Now we must edit advanced settings, so Pi will automatically connect to a wifi network of our choosing. This is needed because we will be directly SSH into Pi. Select "Next" then seleect "edit settings". OR just click CTR + SHIFT + X on windows and linux. (You will want to remember the username and password you set in "Set Username and Password" section)
 
 <img src="documentation_images/thumbnail_Rasbien_use_options.png" width="300" height="200" alt="My Image">
 
-9.Fill in all General settings. Hostname, Usernane, and Password will define how pi appears on local network and how to log into it. Configuration of wireless LAN is where you should put your network information (In our case the name and password to our wireless network). 
+9. Fill in all General settings. Hostname, Usernane, and Password will define how pi appears on local network and how to log into it. Configuration of wireless LAN is where you should put your network information (In our case the name and password to our wireless network). 
 
 <img src="documentation_images/thumbnail_Rasbien_advanced_gen.png" width="400" height="525" alt="My Image">
 
-10.Next in the "Services" tab, make sure that SSH is enabled.
+10. Next in the "Services" tab, make sure that SSH is enabled.
 
 <img src="documentation_images/thumbnail_Rasbien_advanced_serv.png" width="350" height="200" alt="My Image">
 
-11.Lastly save all edited settings, (You don't need to change antything in "Options" Tab). Then confirm flashing of SD Card, then Wait for Rasbien to flash OS. SD Card should be good to plug into Pi once done!
+11. Lastly save all edited settings, (You don't need to change antything in "Options" Tab). Then confirm flashing of SD Card, then Wait for Rasbien to flash OS. SD Card should be good to plug into Pi once done!
 
 <img src="documentation_images/thumbnail_Rasbien_confirm.png" width="300" height="200" alt="My Image">
 
@@ -220,23 +220,23 @@ Installation steps: https://ardupilot.org/planner/docs/mission-planner-installat
 
 Basics of Connecting: https://ardupilot.org/planner/docs/common-connect-mission-planner-autopilot.html
 
-1.Connect FC directly to PC via USB C, then connect to FC with Mission Planner.
+1. Connect FC directly to PC via USB C, then connect to FC with Mission Planner.
 
 <img src="documentation_images/MP_connect.png" width="500" height="100" alt="My Image">
 
-2.Select "Config" Tab, then "Full Parameter List"
+2. Select "Config" Tab, then "Full Parameter List"
 
 <img src="documentation_images/mp_config.png" width="400" height="100" alt="My Image">
 
-3.Change Serial2_protocal to 2 or mavlink 2. "Serial2" in our case are the RX and TX pins on our Kakute H7 mini Flight controller, we are telling the firmware to expect "Mavlink 2" communication protocal on those pins. 
+3. Change Serial2_protocal to 2 or mavlink 2. "Serial2" in our case are the RX and TX pins on our Kakute H7 mini Flight controller, we are telling the firmware to expect "Mavlink 2" communication protocal on those pins. 
 
 <img src="documentation_images/param_proto.png" width="600" height="50" alt="My Image">
 
-4.Set Serial2_baud to 57600 (Note offical documentation recommends 921600, in our case we got the system working useing 57600)
+4. Set Serial2_baud to 57600 (Note offical documentation recommends 921600, in our case we got the system working useing 57600)
 
 <img src="documentation_images/param_baud.png" width="600" height="50" alt="My Image">
 
-5.Save Params and disconnect.
+5. Save Params and disconnect.
 
 <img src="documentation_images/mp_search_and_other.png" width="100" height="200" alt="My Image"><img src="documentation_images/mp_disconnect.png" width="400" height="60" alt="My Image">
 
@@ -245,21 +245,19 @@ Flight contoller is ready to recieve and trasnmit mavlink messages on RX and TX 
 #### Raspberry Pi Settings
 To configure Raspberry Pi we opted to SSH into Pi's command line over network. Since during the Pi's OS flasing, we uploaded the settings for Pi to connect automatically to our wifi network. We simply need to find the assigned IP address our local network has given our PI.
 
-1.Locate your routers "Dynamic Host Configuration Protocal Client Table" or "DHCP Cliets List" (This step may vary depending on router and firewall settings on wifi network...)
-
-In our case the IP address asigned to our drone is XXX.XXX.X.101, (Note I've put X placeholder in for security, the IP address will be all numbers). Also keep note of our Ground Control Computer in this case "Jayden's Laptop" with IP of XXX.XXX.X.106. 
+1. Locate your routers "Dynamic Host Configuration Protocal Client Table" or "DHCP Cliets List" (This step may vary depending on router and firewall settings on wifi network...) In our case the IP address asigned to our drone is XXX.XXX.X.101, (Note I've put X placeholder in for security, the IP address will be all numbers). Also keep note of our Ground Control Computer in this case "Jayden's Laptop" with IP of XXX.XXX.X.106. 
 
 <img src="documentation_images/DHCP_clients.png" width="400" height="60" alt="My Image">
 
-2.Open Powershell or equivilant. Type "ssh robotics@XXX.XXX.X.XXX" XXX.XXX.X.XXX being the IP of the Pi we observed earlier. 
+2. Open Powershell or equivilant. Type "ssh robotics@XXX.XXX.X.XXX" XXX.XXX.X.XXX being the IP of the Pi we observed earlier. 
 
 <img src="documentation_images/power_shell_shh.png" width="400" height="20" alt="My Image">
 
-3.If connecting to Pi for first time (Or Ip has been reset for any reason), type "yes" for saving device.
+3. If connecting to Pi for first time (Or Ip has been reset for any reason), type "yes" for saving device.
 
 <img src="documentation_images/power_shell_type_yes.png" width="400" height="70" alt="My Image">
 
-4.You will then be prompted to type in a password. 
+4. You will then be prompted to type in a password. 
 *NOTE: the username (in this case robotics) and password for PI are set when Flashing OS onto SD card, you should have them written down or saved somewhere. Refer to Section "Firmware" subsection "Rasberry PI" step #8 if you are confused...
 
 <img src="documentation_images/power_shell_save_c.png" width="400" height="20" alt="My Image">
