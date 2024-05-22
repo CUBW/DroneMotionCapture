@@ -208,6 +208,17 @@ Or follow the simplified steps below.
 The setup of Mavlink communication (Drone control) from ground computer through raspberry pi to flight controller follows the basic steps laid out in this guide: https://ardupilot.org/dev/docs/raspberry-pi-via-mavlink.html
 Simplified steps for our use case are below...
 #### Flight Controller Settings
+First we must change some parameters on our Ardupilot Firmware, if you haven't arealdy installed the ardupilot firmware refer to Flight Controller in "Firmware" Section of documentation. 
+
+We will be ajusting settings using Mission Planner ground control software built for ardupilot, this guide assumes basic knowlege of mission planner, and how to change paremeters. 
+
+If you haven't used mission planner before it's strongly recommned to skim through the Overview: https://ardupilot.org/dev/docs/raspberry-pi-via-mavlink.html
+
+Installation steps: https://ardupilot.org/planner/docs/mission-planner-installation.html
+
+Basics of Connecting to Drones with Mission Planner: https://ardupilot.org/planner/docs/common-connect-mission-planner-autopilot.html
+
+
 #### Raspberry Pi Settings
 #### MAVProxy Relay
 ### Flight Controller Configuration
