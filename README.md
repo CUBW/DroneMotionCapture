@@ -168,23 +168,23 @@ Or follow the simplified steps below.
 2.Start application, and plug in SD Card that Pi OS will be flashed on.
 3.Click "Choose Device"
 
-<img src="documentation_images/thumbnail_Rasbien.png" width="600" height="400" alt="My Image">
+<img src="documentation_images/thumbnail_Rasbien.png" width="300" height="200" alt="My Image">
 
 4.Choose the Pi we are using, in this case Rasberry Pi Zero 2 W
 
-<img src="documentation_images/thumbnail_Rasbien_choose_os.png" width="600" height="400" alt="My Image">
+<img src="documentation_images/thumbnail_Rasbien_choose_os.png" width="300" height="200" alt="My Image">
    
 5.For the OS, since we have now need for Desktop GUI, we are opting to use "PI OS Lite" (no desktop env). To do this hit "Choose OS"
 
-<img src="documentation_images/thumbnail_Rasbien_choose_os_b.png" width="600" height="400" alt="My Image">
+<img src="documentation_images/thumbnail_Rasbien_choose_os_b.png" width="300" height="200" alt="My Image">
 
 6.Select "Other" options
 
-<img src="documentation_images/thumbnail_Rasbien_choose_os_extra.png" width="600" height="400" alt="My Image">
+<img src="documentation_images/thumbnail_Rasbien_choose_os_extra.png" width="300" height="200" alt="My Image">
 
 7.Select "PI OS Lite (64 bit) 
 
-<img src="documentation_images/thumbnail_Rasbien_lite.png" width="600" height="400" alt="My Image">
+<img src="documentation_images/thumbnail_Rasbien_lite.png" width="300" height="200" alt="My Image">
 
 
 
