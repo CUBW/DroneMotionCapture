@@ -240,8 +240,22 @@ Basics of Connecting: https://ardupilot.org/planner/docs/common-connect-mission-
 
 <img src="documentation_images/mp_search_and_other.png" width="100" height="200" alt="My Image"><img src="documentation_images/mp_disconnect.png" width="400" height="60" alt="My Image">
 
-Flight contoller is ready to recieve and trasnmit mavlink messages on RX and TX pins that Pi is connectd to. 
+Flight contoller is ready to recieve and trasnmit mavlink messages on RX and TX pins that Pi is connectd to.
+
 #### Raspberry Pi Settings
+To configure Raspberry Pi we opted to SSH into Pi's command line over network. Since during the Pi's OS flasing, we uploaded the settings for Pi to connect automatically to our wifi network. We simply need to find the assigned IP address our local network has given our PI.
+
+1. Locate your routers "Dynamic Host Configuration Protocal Client Table" or "DHCP Cliets List" (This step may vary depending on router and firewall settings on wifi network...)
+
+In our case the IP address asigned to our drone is XXX.XXX.X.101, (Note I've put X placeholder in for security, the IP address will be all numbers). Also keep note of our Ground Control Computer in this case "Jayden's Laptop" with IP of XXX.XXX.X.106. 
+
+<img src="documentation_images/DCHP_clients.png" width="400" height="60" alt="My Image">
+
+
+
+
+
+
 #### MAVProxy Relay
 ### Flight Controller Configuration
 #### Motor, Frame, Propeller, and Battery
