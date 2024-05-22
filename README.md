@@ -144,11 +144,11 @@ Our esc comes with blheli_s, meaning we will use BLHeliSuite to configure esc se
 
 4.In BLHeliSuite, click "Select ATMEL/SILABS Interface" drop down, and select "SILABS BLHeli Bootloader (cleanflight)" or the yellow "E". 
 
-![My Image](documentation_images/BLHeliSuite_select.png)
+<img src="documentation_images/BLHeliSuite_select.png" width="500" height="100" alt="My Image">
 
 5.Now, in com window, select COM port that FC is currenlty connected under, Hit "connect", then hit "read setup"
 
-![My Image](documentation_images/BLHeliSuite_connect_read.png)
+<img src="documentation_images/BLHeliSuite_connect_read.png" width="500" height="100" alt="My Image">
 
 Now you should be connected to ESC settings, and have the ability to modify ESC settings per motor. You can modify a single motor or muiltiple at same time by selecting motor numbers:
 
