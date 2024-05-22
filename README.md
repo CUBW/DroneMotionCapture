@@ -230,6 +230,7 @@ Basics of Connecting: https://ardupilot.org/planner/docs/common-connect-mission-
 2. Select "Config" Tab, then "Full Parameter List"
 
 <img src="documentation_images/mp_config.png" width="400" height="100" alt="My Image">
+<img src="documentation_images/mp_full_param.png" width="100" height="230" alt="My Image">
 
 3. Change Serial2_protocal to 2 or mavlink 2. "Serial2" in our case are the RX and TX pins on our Kakute H7 mini Flight controller, we are telling the firmware to expect "Mavlink 2" communication protocal on those pins. 
 
