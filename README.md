@@ -238,7 +238,7 @@ Basics of Connecting: https://ardupilot.org/planner/docs/common-connect-mission-
 
 5.Save Params and disconnect.
 
-<img src="documentation_images/mp_search_and_other.png" width="100" height="200" alt="My Image"><img src="documentation_images/mp_disconnect.png" width="400" height="75" alt="My Image">
+<img src="documentation_images/mp_search_and_other.png" width="100" height="200" alt="My Image"><img src="documentation_images/mp_disconnect.png" width="400" height="60" alt="My Image">
 
 Flight contoller is ready to recieve and trasnmit mavlink messages on RX and TX pins that Pi is connectd to. 
 #### Raspberry Pi Settings
