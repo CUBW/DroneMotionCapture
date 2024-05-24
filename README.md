@@ -330,7 +330,21 @@ In this example we will now run mavproxy, and specify a local IP address for to 
 
 Note the master is the same as the first example "/dev/serial0" this is the RX and TX uart connection to FC, the new startup argument out is the destination IP address that you with to relay our communication to. In our case the IP ending in .106
 
-3. Open another PowerShell terminal on your computer, 
+3. Open another PowerShell terminal on your computer, now simpley run mavproxy, no need to specify master or out
+
+Congragulations we've acheived mavproxy communciation over wifi, if mavproxy connected correctly you should see the same cmd line interface for drone control that we saw when were direcly connectd over SSH. The only differnce now is that we have a Mavproxy is being used over network, not just between Pi and FC. 
+
+What does this mean? 
+
+Now that our pi is relaying our mavproxy connection to our computer's IP address. We can now connect with ardupilots "Mission Planner" Ground control software, but instead of using USB C wired connection. We can connect direcly to drone over wifi network. Which means we can now do all our conrol, calibration, and parameter changing wirelessly over the wifi network!
+
+Example 3, connecting to drone with mission planner over network 
+
+1. SSH into pi
+2. Run Mavproxy code with XXX.XXX.X.XXX being the IP of your computer
+3. Open Mission Planner, and in connection tab select "UDP", Baudrate of "57600" and port number of 14550
+
+Now we are connected wirelessly with Mission planner!
 
 ### Pi Button Setup
 
