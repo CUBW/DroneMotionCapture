@@ -13,7 +13,7 @@
 5. [Raspberry Pi Antenna Setup](#5-raspberry-pi-antenna-setup)
    - [Pi ssh setup](#pi-ssh-setup)
    - [Pi UART setup](#pi-uart-setup)
-   - [Pi Connection Example](#pi-connection-example)
+   - [Pi Connection Example](#pi-connection-examples)
    - [Pi button setup](#pi-button-setup)
 6. [Calibration/Tuning](#6-calibration/tuning)
    - []
@@ -291,21 +291,46 @@ If you've done everything correctly you should be SSH'd into PI, and able operat
 The Raspberry Pi’s serial port will now be usable on /dev/serial0.
 
 ### Pi MAVProxy Relay
-Now we need to install mavproxy, 
+Now we need to install mavproxy, both on our Pi and our Computer...
 the official documentation is here: https://ardupilot.org/mavproxy/docs/getting_started/download_and_installation.html#mavproxy-downloadinstalllinux
 Simplified steps are:
 
 1. SSH into Pi
-2. Type use this code to install mavproxy
+2. Type use this code to install mavproxy (Install all dependencies! It may take 5-10 minutes)
 ```
 sudo apt-get install python3-dev python3-opencv python3-wxgtk4.0 python3-pip python3-matplotlib python3-lxml python3-pygame
 pip3 install PyYAML mavproxy --user
 echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
 ```
-3. Install all required dependencies
+For Windows MavProxy install use this installer (visit official documentation if this link is deptricated): https://firmware.ardupilot.org/Tools/MAVProxy/
 
+### Pi Connection Examples
+Now that Mavproxy has been installed, we are ready to use Rasberry Pi as "antenna" to control/calibrate our drone!
 
-### Pi Connection Example
+Example 1, Cmd line control directly from PI SSH Terminal
+In this example we will ssh into pi and run MavProxy to connect it to flight controller. And control our drone by typing commands directly into Pi terminal over network
+
+1. Power drone via charged battery (we don't need any wired connections to FC or Pi!)
+2. Pi should power on automatically (if everything is wired correctly), SSH into pi
+3. Run this code
+```
+ mavproxy.py --master=/dev/serial0 --baudrate 57600
+```
+
+It's important to note with in this example, Mavproxy is only being used as communication between the Pi and FC on the drone. We are using network (ssh) to type commands direclty to PI's terminal (running mavproxy). Ultimately, we want to establish mavlink communication across the network as well, to all allow other programs that use the Mavproxy communication protocal to talk directly to drone over network. see example 2. 
+
+Example 2, Using Mavproxy as "relay" 
+In this example we will now run mavproxy, and specify a local IP address for to relay it's mavlink connection to...
+
+1. Access the IP address of your PI and Computer you desire to control drone from. In our case the unique identifiers of our IP addresses are Pi = .101 Computer = .106
+
+<img src="documentation_images/DHCP_clients.png" width="400" height="60" alt="My Image">
+
+2. SSH into PI, and run this command
+
+Note the master is the same as the first example "/dev/serial0" this is the RX and TX uart connection to FC, the new startup argument out is the destination IP address that you with to relay our communication to. In our case the IP ending in .106
+
+3. Open another PowerShell terminal on your computer, 
 
 ### Pi Button Setup
 
