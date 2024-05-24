@@ -291,6 +291,19 @@ If you've done everything correctly you should be SSH'd into PI, and able operat
 The Raspberry Pi’s serial port will now be usable on /dev/serial0.
 
 ### Pi MAVProxy Relay
+Now we need to install mavproxy, 
+the official documentation is here: https://ardupilot.org/mavproxy/docs/getting_started/download_and_installation.html#mavproxy-downloadinstalllinux
+Simplified steps are:
+
+1. SSH into Pi
+2. Type use this code to install mavproxy
+```
+sudo apt-get install python3-dev python3-opencv python3-wxgtk4.0 python3-pip python3-matplotlib python3-lxml python3-pygame
+pip3 install PyYAML mavproxy --user
+echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
+```
+3. Install all required dependencies
+
 
 ### Pi Connection Example
 
