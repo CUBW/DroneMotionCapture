@@ -258,7 +258,7 @@ class GotoNEDPointThread(threading.Thread):
                 drone_x = message.x
                 drone_y = message.y
                 drone_z = message.z
-                print(f"X: {drone_x}, Y: {drone_y}, Z: {drone_z}")
+                #print(f"X: {drone_x}, Y: {drone_y}, Z: {drone_z}")
                 if abs(self.x - drone_x) < self.accuracy and abs(self.y - drone_y) < self.accuracy and abs(
                         self.z - drone_z) < self.accuracy:
                     print("Drone has reached position")
@@ -476,7 +476,6 @@ class RotatingTriangle:
         # Calculate the coordinates of the initial triangle
         x1 = self.radius * math.cos(0)
         y1 = self.radius * math.sin(0)
-
         x2 = self.radius * math.cos(2 * math.pi / 3)
         y2 = self.radius * math.sin(2 * math.pi / 3)
 

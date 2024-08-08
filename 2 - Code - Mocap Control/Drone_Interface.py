@@ -17,10 +17,10 @@ streaming_client = mocap_connect()
 is_running = streaming_client.run()
 
 # Drone connection
-drone_connection = drone_connect(14552) #udp connection to ardupilot
+drone_connection = drone_connect(14551) #udp connection to ardupilot
 
 # Mocap Streaming Thread, will run until you terminate THIS's files terminal.
-drone_rigid_body_id = 9
+drone_rigid_body_id = 12
 drone_stream_id = 1
 mocap_stream = threaded_mocap_streaming("stream1", drone_stream_id, drone_connection, streaming_client, init_time, drone_rigid_body_id) 
 mocap_stream.start() 
@@ -34,24 +34,24 @@ time.sleep(2)
 #Take off
 take_off_height = .5 # meter
 takeoff(drone_connection, take_off_height)
-time.sleep(3)
+time.sleep(2)
 print("moving to postion")
-x1 = -1
-z1 = -.5
+x1 = -2
+z1 = -.75
 y1 = 0
-accuracy = .05
+accuracy = .10
 goto_NED_point(drone_connection, x1, y1, z1, init_time, accuracy)
 print("moving to postion")
-x1 = 1
-z1 = -.5
+x1 = 2
+z1 = -.75
 y1 = 0
-accuracy = .05
+accuracy = .10
 goto_NED_point(drone_connection, x1, y1, z1, init_time, accuracy)
 print("moving to postion")
 x2 = 0
-z2 = -.5
+z2 = -.75
 y2 = 0
-accuracy = .05
+accuracy = .10
 goto_NED_point(drone_connection, x2, y2, z2, init_time, accuracy)
 print("Landing")
 set_mode_land(drone_connection)

@@ -27,7 +27,7 @@ for port in swarm_ports:
 time.sleep(3)
 # Mocap Streaming Thread, will run until you terminate THIS's files terminal.
 
-swarm_rigid_body_id_list = [6,9,8]
+swarm_rigid_body_id_list = [1,2,5]
 
 stream_id = 1
 for id, connection in zip(swarm_rigid_body_id_list, swarm_connections):
@@ -65,56 +65,56 @@ print("all drones have taken off")
 
 accuracy = .15
 
-# swarm_target_positions = [[-1,.5,-.5],[0,.5,-.5],[1,.5,-.5]]
-# goto_ned_threads = []
+swarm_target_positions = [[-1,.5,-.5],[0,.5,-.5],[1,.5,-.5]]
+goto_ned_threads = []
 
-# for drone_connection, target_position in zip(swarm_connections, swarm_target_positions):
-#     x = target_position[0]
-#     y = target_position[1]
-#     z = target_position[2]
-#     goto_NED_point_thread = GotoNEDPointThread(drone_connection, x, y, z, init_time, accuracy)
-#     goto_ned_threads.append(goto_NED_point_thread)
+for drone_connection, target_position in zip(swarm_connections, swarm_target_positions):
+    x = target_position[0]
+    y = target_position[1]
+    z = target_position[2]
+    goto_NED_point_thread = GotoNEDPointThread(drone_connection, x, y, z, init_time, accuracy)
+    goto_ned_threads.append(goto_NED_point_thread)
 
-# for thread in goto_ned_threads:
-#     thread.start()
+for thread in goto_ned_threads:
+    thread.start()
 
-# for thread in goto_ned_threads:
-#     thread.join()
+for thread in goto_ned_threads:
+    thread.join()
 
-# swarm_target_positions = [[-1,-.5,-.5],[0,0,-.5],[1,-.5,-.5]]
-# goto_ned_threads = []
+swarm_target_positions = [[-1,-.5,-.5],[0,-.5,-.5],[1,-.5,-.5]]
+goto_ned_threads = []
 
-# for drone_connection, target_position in zip(swarm_connections, swarm_target_positions):
-#     x = target_position[0]
-#     y = target_position[1]
-#     z = target_position[2]
-#     goto_NED_point_thread = GotoNEDPointThread(drone_connection, x, y, z, init_time, accuracy)
-#     goto_ned_threads.append(goto_NED_point_thread)
+for drone_connection, target_position in zip(swarm_connections, swarm_target_positions):
+    x = target_position[0]
+    y = target_position[1]
+    z = target_position[2]
+    goto_NED_point_thread = GotoNEDPointThread(drone_connection, x, y, z, init_time, accuracy)
+    goto_ned_threads.append(goto_NED_point_thread)
 
-# for thread in goto_ned_threads:
-#     thread.start()
+for thread in goto_ned_threads:
+    thread.start()
 
-# for thread in goto_ned_threads:
-#     thread.join()
+for thread in goto_ned_threads:
+    thread.join()
 
 
-# swarm_target_positions = [[-1,0,-.5],[0,0,-.5],[1,0,-.5]]
-# goto_ned_threads = []
+swarm_target_positions = [[-1,0,-.5],[0,0,-.5],[1,0,-.5]]
+goto_ned_threads = []
 
-# for drone_connection, target_position in zip(swarm_connections, swarm_target_positions):
-#     x = target_position[0]
-#     y = target_position[1]
-#     z = target_position[2]
-#     goto_NED_point_thread = GotoNEDPointThread(drone_connection, x, y, z, init_time, accuracy)
-#     goto_ned_threads.append(goto_NED_point_thread)
+for drone_connection, target_position in zip(swarm_connections, swarm_target_positions):
+    x = target_position[0]
+    y = target_position[1]
+    z = target_position[2]
+    goto_NED_point_thread = GotoNEDPointThread(drone_connection, x, y, z, init_time, accuracy)
+    goto_ned_threads.append(goto_NED_point_thread)
 
-# for thread in goto_ned_threads:
-#     thread.start()
+for thread in goto_ned_threads:
+    thread.start()
 
-# for thread in goto_ned_threads:
-#     thread.join()
+for thread in goto_ned_threads:
+    thread.join()
 
-rotating_triangle = RotatingTriangle(25)
+rotating_triangle = RotatingTriangle(45)
 
 iterations = 20
 
@@ -140,6 +140,7 @@ while True:
     iterations = iterations -1
 
     if iterations == 0:
+
         break
 
 
