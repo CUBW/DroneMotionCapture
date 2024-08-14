@@ -230,6 +230,24 @@ def goto_NED_point(drone_connection, x, y, z, init_time, accuracy):
                 break
     return
 
+
+
+def simple_goto_NED_point(drone_connection, x, y, z, init_time, accuracy):
+    # 3576 position
+    # 3527 velocity 
+    # 3135 acceleration
+    # 3520 position + vel
+    # 3072 pos + vel + acc
+    # 2559 yaw 
+    # 1535 yaw rate
+    # For both yaw and yaw rate must include at least pos vel or acc 
+    position_mask = int(3576) # use position
+    time_us = int((time.time()-init_time) * 1.0e6)
+    drone_connection.mav.set_position_target_local_ned_send(time_us, drone_connection.target_system, drone_connection.target_component, 1, position_mask, x, y, z, 0, 0, 0, 0, 0, 0, 0, 0)
+    #drone_connection.mav.request_data_stream_send(drone_connection.target_system, drone_connection.target_component, mavutil.mavlink.MAV_DATA_STREAM_POSITION,1,1)
+    
+    return
+
 ###-------------------------------------------------------------------------------------###
 ###                              Thread for goto NED point (swarm)                      ###
 ###-------------------------------------------------------------------------------------###

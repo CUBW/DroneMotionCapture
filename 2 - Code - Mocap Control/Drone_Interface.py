@@ -36,13 +36,13 @@ take_off_height = .5 # meter
 takeoff(drone_connection, take_off_height)
 time.sleep(2)
 print("moving to postion")
-x1 = -2
+x1 = -1.5
 z1 = -.75
 y1 = 0
 accuracy = .10
 goto_NED_point(drone_connection, x1, y1, z1, init_time, accuracy)
 print("moving to postion")
-x1 = 2
+x1 = 1.5
 z1 = -.75
 y1 = 0
 accuracy = .10
